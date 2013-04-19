@@ -1,0 +1,9 @@
+/* M9 CSS Document */
+
+html, body {
+    background: black;
+    color: white;
+    width: 100%;
+    height: 100%;
+    font-family: Arial;
+}
