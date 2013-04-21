@@ -134,7 +134,7 @@ class user
     }
     
     public static function create($username, $password, $type, $groups, $gravatar, $googleplus) {
-        $sql = "INSERT INTO `m9`.`users` (`username`, `password`, `clientid`, `type`, `groups`, `gravatar`, `googleplus`, `id`) VALUES ('".$username."', '".hash('sha256', $password)."', NULL, '".$type."', NULL, NULL, NULL, NULL);";
+        $sql = "INSERT INTO `m9`.`users` (`username`, `password`, `clientid`, `type`, `groups`, `gravatar`, `googleplus`, `id`) VALUES ('".$username."', '".hash('sha256', $password)."', NULL, '".$type."', NULL, '".md5(strtolower( trim($username)))."', NULL, NULL);";
         if (database::select("SELECT * FROM `m9`.`users` WHERE `users`.`username` = '".$username."'")) {
             #echo "User exists";
         } else {
@@ -183,7 +183,7 @@ class user
             echo '<td><input type="button" value="Change Password" onClick="User.password('.$data['id'].')" /></td>';
             echo '<td><input type="button" value="'.$data['type'].'" onClick="User.type('.$data['id'].')" /></td>';
             echo '<td>Coming Soon</td>';
-            echo '<td>Coming Soon</td>';
+            echo '<td><img alt="Gravatar" src="http://www.gravatar.com/avatar/'.$data['gravatar'].'" /></td>';
             echo '<td>Coming Soon</td>';
             echo '<td><input type="button" value="Logout User" onClick="User.logout('.$data['id'].')" /></td>';
             echo '<td><input type="button" value="X" onClick="User.delete('.$data['id'].')" /></td>';
