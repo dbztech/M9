@@ -57,6 +57,8 @@ class database
 			print ("Could not connect to server.n");
 			die ("getMessage(): " . $e->getMessage () . "n");
 		}
+        $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		return $dbh;
 	}
 
@@ -191,6 +193,13 @@ class user
             echo '</tr>';
         }
         echo '</table>';
+    }
+    
+    public static function getGravatar() {
+        $user = $_COOKIE['username'];
+        $userdata = database::select("SELECT * FROM  `users` WHERE  `username` =  '".$user."'");
+        $userdata = $userdata[0];
+        return $userdata['gravatar'];
     }
 }
 

@@ -7,11 +7,16 @@
         <script type="text/javascript" src="scripts.js"></script>
     </head>
     <body onload="Core.load();">
-        <h1>M9 Admin Panel</h1>
-        <?php
-            cards::adminPanel();
-        ?>
-        <hr />
-        <input type="button" value="Logout" onclick="window.location = '/M9/Logout.php'" />
+        <div id="nav">
+            <img alt="Profile Pic" src="http://www.gravatar.com/avatar/<?php echo user::getGravatar(); ?>?s=400" id="profilepic" />
+        </div>
+        <div id="content">
+            <h1>M9 Admin Panel</h1>
+            <?php
+                cards::adminPanel();
+            ?>
+            <hr />
+            <input type="button" value="Logout" onclick="window.location = '/M9/Logout.php'" />
+        </div>
     </body>
 </html>
