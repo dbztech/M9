@@ -6,7 +6,6 @@ if (count($_POST) > 0) {
         $userdata = database::select("SELECT * FROM  `users` WHERE  `username` =  '".$_COOKIE['username']."'");
         $userdata = $userdata[0];
         #If the user has cookies, this is very likely
-        #Replace with randhash
         if (filter::username($_COOKIE['username']) == $userdata['username'] && filter::password($_COOKIE['clientid']) == $userdata['clientid'] && $userdata != '') {
             #echo $_POST['query'];
             if ($_POST['query'] == "CreateUser") {
@@ -28,7 +27,6 @@ if (count($_GET) > 0) {
         $userdata = database::select("SELECT * FROM  `users` WHERE  `username` =  '".$_COOKIE['username']."'");
         $userdata = $userdata[0];
         #If the user has cookies, this is very likely
-        #Replace with randhash
         if (filter::username($_COOKIE['username']) == $userdata['username'] && filter::password($_COOKIE['clientid']) == $userdata['clientid'] && $userdata != '') {
             #echo "GET Data";
             $data = explode('_', $_GET['query']);
