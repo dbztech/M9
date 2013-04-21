@@ -134,7 +134,7 @@ class user
     }
     
     public static function create($username, $password, $type, $groups, $gravatar, $googleplus) {
-        $sql = "INSERT INTO `m9`.`users` (`username`, `password`, `clientid`, `type`, `groups`, `gravatar`, `googleplus`, `id`) VALUES ('".$username."', '".hash('sha256', $password)."', NULL, '".$type."', NULL, '".md5(strtolower( trim($username)))."', NULL, NULL);";
+        $sql = "INSERT INTO `m9`.`users` (`username`, `password`, `clientid`, `type`, `groups`, `gravatar`, `googleplus`, `id`) VALUES ('".$username."', '".hash('sha256', $password)."', NULL, '".$type."', NULL, '".md5(strtolower(trim($username)))."', NULL, NULL);";
         if (database::select("SELECT * FROM `m9`.`users` WHERE `users`.`username` = '".$username."'")) {
             #echo "User exists";
         } else {
@@ -149,6 +149,7 @@ class user
         } else {
             #echo "Inserted";
             database::insert("UPDATE  `m9`.`users` SET  `username` =  '".$username."' WHERE  `users`.`id` = '".$user."'");
+            database::insert("UPDATE  `m9`.`users` SET  `gravatar` =  '".md5(strtolower(trim($username)))."' WHERE  `users`.`id` = '".$user."'");
         }
     }
     
