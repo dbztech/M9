@@ -115,6 +115,95 @@ class user
         setcookie('clientid', '');
         header('Location: /M9/');
     }
+    
+    public static function logoutSpecific($user) {
+        database::insert("UPDATE  `m9`.`users` SET  `clientid` =  NULL WHERE  `users`.`id` = '".$user."'");
+        setcookie('username', '');
+        setcookie('clientid', '');
+    }
+    
+    public static function delete($user) {
+        database::insert("DELETE FROM `m9`.`users` WHERE `users`.`id` = ".$user);
+    }
+    
+    public static function create($username, $password, $type, $groups, $gravatar, $googleplus) {
+        $sql = "INSERT INTO `m9`.`users` (`username`, `password`, `clientid`, `type`, `groups`, `gravatar`, `googleplus`, `id`) VALUES ('".$username."', '".hash('sha256', $password)."', NULL, '".$type."', NULL, NULL, NULL, NULL);";
+        if (database::select("SELECT * FROM `m9`.`users` WHERE `users`.`username` = '".$username."'")) {
+            #echo "User exists";
+        } else {
+            #echo "Inserted";
+            database::insert($sql);
+        }
+    }
+    
+    public static function changeUsername($user, $username) {
+        database::insert("UPDATE  `m9`.`users` SET  `username` =  '".$username."' WHERE  `users`.`id` = '".$user."'");
+    }
+    
+    public static function changePassword($user, $old, $new, $repeat) {
+        $userdata = database::select("SELECT * FROM  `users` WHERE  `id` =  '".$user."'");
+        $userdata = $userdata[0];
+        if (hash('sha256', $old) == $userdata['password'] && $new == $repeat) {
+            database::insert("UPDATE  `m9`.`users` SET  `password` =  '".hash('sha256', $new)."' WHERE  `users`.`id` = '".$user."'");
+            database::insert("UPDATE  `m9`.`users` SET  `clientid` =  NULL WHERE  `users`.`id` = '".$user."'");
+        }
+    }
+    
+    public static function changeType($user, $type) {
+        database::insert("UPDATE  `m9`.`users` SET  `type` =  '".$type."' WHERE  `users`.`id` = '".$user."'");
+    }
+    
+    public static function getUserType() {
+        $user = $_COOKIE['username'];
+        $userdata = database::select("SELECT * FROM  `users` WHERE  `username` =  '".$user."'");
+        $userdata = $userdata[0];
+        return $userdata['type'];
+    }
+    
+    public static function userList() {
+        $userdata = database::select("SELECT * FROM  `users` WHERE 1");
+        echo '<input type="hidden" name="clientid" value="'.$_COOKIE['clientid'].'" />';
+        echo '<table border="1">';
+        echo '<th>Username</th><th>Password</th><th>User Type</th><th>Groups</th><th>Gravatar</th><th>Google Plus</th><th>Logout User</th>';
+        foreach ($userdata as $data) {
+            echo '<tr>';
+            echo '<td><input type="button" value="'.$data['username'].'" onClick="User.username('.$data['id'].')" /></td>';
+            echo '<td><input type="button" value="Change Password" onClick="User.password('.$data['id'].')" /></td>';
+            echo '<td><input type="button" value="'.$data['type'].'" onClick="User.type('.$data['id'].')" /></td>';
+            echo '<td>Coming Soon</td>';
+            echo '<td>Coming Soon</td>';
+            echo '<td>Coming Soon</td>';
+            echo '<td><input type="button" value="Logout User" onClick="User.logout('.$data['id'].')" /></td>';
+            echo '<td><input type="button" value="X" onClick="User.delete('.$data['id'].')" /></td>';
+            echo '</tr>';
+        }
+        echo '</table>';
+    }
+}
+
+class cards 
+{
+    public static function loadCards($cardsToLoad) {
+        foreach($cardsToLoad as $currentCard) {
+            $filename = "Cards/".$currentCard.".php";
+            echo '<div class="card" id="'.$currentCard.'">';
+            #echo $filename;
+            if (file_exists($filename)) {
+                include($filename);
+    	    }
+            echo '</div>';
+        }
+    }
+    
+    public static function adminPanel() {
+        $type = user::getUserType();
+        if ($type == "admin") {
+            $cards = Array('Data', 'Users');
+        } elseif ($type == "standard") {
+            $cards = Array('Data');
+        }
+        cards::loadCards($cards);
+    }
 }
 
 class filter

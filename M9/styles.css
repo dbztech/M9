@@ -7,3 +7,23 @@ html, body {
     height: 100%;
     font-family: Arial;
 }
+
+#ManageUsers {
+    display: none;
+}
+
+#CreateUsers {
+    display: none;
+}
+
+#ChangeUsername {
+    display: none;
+}
+
+#ChangePassword {
+    display: none;
+}
+
+#ChangeType {
+    display: none;
+}

@@ -8,8 +8,8 @@
         <h1>M9 Admin Panel</h1>
         <h2>Login:</h2>
         <form action="/M9/" method="post">
-            <input type="text" name="username" placeholder="Username" />
-            <input type="password" name="password" placeholder="Password" />
+            <input type="email" name="username" placeholder="Email" required />
+            <input type="password" name="password" placeholder="Password" required />
             <input type="submit" />
         </form>
     </body>
