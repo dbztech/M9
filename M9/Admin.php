@@ -8,5 +8,6 @@
     </head>
     <body>
         <h1>M9 Admin Panel</h1>
+        <input type="button" value="Logout" onclick="window.location = '/M9/Logout.php'" />
     </body>
 </html>

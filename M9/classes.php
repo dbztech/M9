@@ -106,13 +106,26 @@ class database
     }
 }
 
+class user
+{
+    public static function logout() {
+        $user = $_COOKIE['username'];
+        database::insert("UPDATE  `m9`.`users` SET  `clientid` =  NULL WHERE  `users`.`username` = '".$user."'");
+        setcookie('username', '');
+        setcookie('clientid', '');
+        header('Location: /M9/');
+    }
+}
+
 class filter
 {
     public static function username($input) {
+        mysql_real_escape_string($input);
         return $input;
     }
     
     public static function password($input) {
+        mysql_real_escape_string($input);
         return $input;
     }
 }
