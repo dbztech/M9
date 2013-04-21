@@ -34,12 +34,31 @@ function user() {
     };
     
     this.logout = function(id) {
-        window.location = "Process.php?query=Logout_"+id;
+        window.location = "Process.php?query=LogouUser_"+id;
     };
     
     this.delete = function(id) {
-        window.location = "Process.php?query=Delete_"+id;
+        window.location = "Process.php?query=DeleteUser_"+id;
     };
 }
 
 User = new user;
+
+function data() {
+    this.edit = function(id) {
+        Core.showId('ChangeData');
+        document.getElementById('ChangeDataId').value = id;
+        document.getElementById('ChangeDataText').value = document.getElementById(id).innerHTML;
+    };
+    
+    this.tag = function(id) {
+        Core.showId('ChangeTag');
+        document.getElementById('ChangeTagId').value = id;
+    };
+    
+    this.delete = function(id) {
+        window.location = "Process.php?query=DeleteData_"+id;
+    };
+}
+
+Data = new data;

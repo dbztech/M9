@@ -1,5 +1,12 @@
 <?php
 #M9 Classes
+class M9
+{
+    public static function data($name) {
+        echo data::getData($name);
+    }
+}
+
 
 #Basic database interaction class
 class database
@@ -137,7 +144,12 @@ class user
     }
     
     public static function changeUsername($user, $username) {
-        database::insert("UPDATE  `m9`.`users` SET  `username` =  '".$username."' WHERE  `users`.`id` = '".$user."'");
+        if (database::select("SELECT * FROM `m9`.`users` WHERE `users`.`username` = '".$username."'")) {
+            #echo "User exists";
+        } else {
+            #echo "Inserted";
+            database::insert("UPDATE  `m9`.`users` SET  `username` =  '".$username."' WHERE  `users`.`id` = '".$user."'");
+        }
     }
     
     public static function changePassword($user, $old, $new, $repeat) {
@@ -181,6 +193,55 @@ class user
     }
 }
 
+class data
+{
+    public static function getData($tag) {
+        $data = database::select("SELECT * FROM  `data` WHERE  `tag` =  '".$tag."'");
+        $data = $data[0];
+        return $data['data'];
+    }
+    
+    public static function dataList() {
+        $listdata = database::select("SELECT * FROM  `data` WHERE 1");
+        echo '<input type="hidden" name="clientid" value="'.$_COOKIE['clientid'].'" />';
+        echo '<table border="1">';
+        echo '<th>Tag</th><th>Data</th><th>Data Modified</th>';
+        foreach ($listdata as $data) {
+            echo '<tr>';
+            echo '<td><input type="button" value="'.$data['tag'].'" onClick="Data.tag('.$data['id'].')" /></td>';
+            echo '<td id="'.$data['id'].'">'.$data['data'].'</td>';
+            echo '<td>'.$data['timestamp'].'</td>';
+            echo '<td><input type="button" value="Edit" onClick="Data.edit('.$data['id'].')" /></td>';
+            echo '<td><input type="button" value="X" onClick="Data.delete('.$data['id'].')" /></td>';
+            echo '</tr>';
+        }
+        echo '</table>';
+    }
+    
+    public static function createData($tag, $data) {
+        $sql = "INSERT INTO `m9`.`data` (`tag`, `data`, `timestamp`, `id`) VALUES ('".$tag."', '".$data."', CURRENT_TIMESTAMP, NULL);";
+        if (database::select("SELECT * FROM `m9`.`data` WHERE `users`.`tag` = '".$tag."'")) {
+            #echo "Tag exists";
+        } else {
+            #echo "Inserted";
+            database::insert($sql);
+        }
+    }
+    
+    public static function changeTag($id, $new) {
+        if (database::select("SELECT * FROM `m9`.`data` WHERE `data`.`tag` = '".$new."'")) {
+            #echo "Tag exists";
+        } else {
+            #echo "Inserted";
+            database::insert("UPDATE  `m9`.`data` SET  `tag` =  '".$new."' WHERE  `data`.`id` = '".$id."'");
+        }
+    }
+    
+    public static function changeData($id, $new) {
+        database::insert("UPDATE  `m9`.`data` SET  `data` =  '".$new."' WHERE  `data`.`id` = '".$id."'");
+    }
+}
+
 class cards 
 {
     public static function loadCards($cardsToLoad) {
@@ -210,7 +271,8 @@ class filter
 {
     public static function username($input) {
         mysql_real_escape_string($input);
-        return $input;
+        $output = filter_var($input, FILTER_VALIDATE_EMAIL);
+        return $output;
     }
     
     public static function password($input) {

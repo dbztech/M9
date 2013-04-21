@@ -27,3 +27,19 @@ html, body {
 #ChangeType {
     display: none;
 }
+
+#ManageData {
+    display: none;
+}
+
+#CreateData {
+    display: none;
+}
+
+#ChangeTag {
+    display: none;
+}
+
+#ChangeData {
+    display: none;
+}

@@ -16,6 +16,12 @@ if (count($_POST) > 0) {
                 user::changePassword($_POST['UserId'], $_POST['old'], $_POST['new'], $_POST['repeat']);
             } elseif ($_POST['query'] == "ChangeType") {
                 user::changeType($_POST['UserId'], $_POST['new']);
+            } elseif ($_POST['query'] == "CreateData") {
+                data::createData($_POST['tag'], $_POST['data']);
+            } elseif ($_POST['query'] == "ChangeData") {
+                data::changeData($_POST['DataId'], $_POST['new']);
+            } elseif ($_POST['query'] == "ChangeTag") {
+                data::changeTag($_POST['DataId'], $_POST['new']);
             }
         }
     }
@@ -30,9 +36,9 @@ if (count($_GET) > 0) {
         if (filter::username($_COOKIE['username']) == $userdata['username'] && filter::password($_COOKIE['clientid']) == $userdata['clientid'] && $userdata != '') {
             #echo "GET Data";
             $data = explode('_', $_GET['query']);
-            if ($data[0] == "Delete") {
+            if ($data[0] == "DeleteUser") {
                 user::delete($data[1]);
-            } elseif ($data[0] == "Logout") {
+            } elseif ($data[0] == "LogoutUser") {
                 user::logoutSpecific($data[1]);
             }
         }

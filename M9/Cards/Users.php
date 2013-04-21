@@ -34,7 +34,6 @@
     <h2>Create Users</h2>
     <form action="Process.php" method="post">
         <input type="hidden" name="query" value="CreateUser" />
-        <input type="hidden" name="UserId" id="ChangeTypeId" value="" />
         <input type="email" placeholder="Email" name="username" required />
         <input type="password" placeholder="Password" required />
         <select name="type">
