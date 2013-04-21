@@ -7,7 +7,7 @@
     <body>
         <h1>M9 Admin Panel</h1>
         <h2>Login:</h2>
-        <form action="index.php" method="post">
+        <form action="/M9/" method="post">
             <input type="text" name="username" placeholder="Username" />
             <input type="password" name="password" placeholder="Password" />
             <input type="submit" />

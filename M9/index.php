@@ -9,6 +9,7 @@ if (count($_POST) > 0) {
         setcookie("username", $_POST['username']);
         #Replace with randhash
         setcookie("password", hash('sha256', $_POST['password']));
+        header('Location: /M9/');
         $login = true;
     } else {
         echo "Password invalid";
