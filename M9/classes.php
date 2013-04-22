@@ -121,35 +121,41 @@ class database
         $output = $sth->fetchAll();
         return $output;
     }
+    
+    public static function preparedInsert($base, $prepared) {
+        $dbh = database::sqlconn();
+        $sth = $dbh->prepare($base);
+        $sth->execute($prepared);
+    }
 }
 
 class user
 {
     public static function logout() {
         $user = $_COOKIE['username'];
-        database::insert("UPDATE  `m9`.`users` SET  `clientid` =  NULL WHERE  `users`.`username` = '".$user."'");
+        database::preparedInsert("UPDATE  `m9`.`users` SET  `clientid` =  NULL WHERE  `users`.`username` = ?", array($user));
         setcookie('username', '');
         setcookie('clientid', '');
         header('Location: /M9/');
     }
     
     public static function logoutSpecific($user) {
-        database::insert("UPDATE  `m9`.`users` SET  `clientid` =  NULL WHERE  `users`.`id` = '".$user."'");
+        database::preparedInsert("UPDATE  `m9`.`users` SET  `clientid` =  NULL WHERE  `users`.`username` = ?", array($user));
         setcookie('username', '');
         setcookie('clientid', '');
     }
     
     public static function delete($user) {
-        database::insert("DELETE FROM `m9`.`users` WHERE `users`.`id` = ".$user);
+        database::preparedInsert("DELETE FROM `m9`.`users` WHERE `users`.`id` = ?", array($user));
     }
     
     public static function create($username, $password, $type, $groups, $gravatar, $googleplus) {
-        $sql = "INSERT INTO `m9`.`users` (`username`, `password`, `clientid`, `type`, `groups`, `gravatar`, `googleplus`, `id`) VALUES ('".$username."', '".hash('sha256', $password)."', NULL, '".$type."', NULL, '".md5(strtolower(trim($username)))."', NULL, NULL);";
         if (database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($username))) {
             #echo "User exists";
         } else {
             #echo "Inserted";
-            database::insert($sql);
+            #database::insert($sql);
+            database::preparedInsert("INSERT INTO `m9`.`users` (`username`, `password`, `clientid`, `type`, `groups`, `gravatar`, `googleplus`, `id`) VALUES (?, ?, NULL, ?, NULL, ?, NULL, NULL);", array($username, hash('sha256', $password), $type, md5(strtolower(trim($username)))));
         }
     }
     
@@ -158,8 +164,8 @@ class user
             #echo "User exists";
         } else {
             #echo "Inserted";
-            database::insert("UPDATE  `m9`.`users` SET  `username` =  '".$username."' WHERE  `users`.`id` = '".$user."'");
-            database::insert("UPDATE  `m9`.`users` SET  `gravatar` =  '".md5(strtolower(trim($username)))."' WHERE  `users`.`id` = '".$user."'");
+            database::preparedInsert("UPDATE  `m9`.`users` SET  `username` = ? WHERE  `users`.`id` = ?", array($username, $user));
+            database::preparedInsert("UPDATE  `m9`.`users` SET  `gravatar` = ? WHERE  `users`.`id` = ?", array(md5(strtolower(trim($username))), $user));
         }
     }
     
