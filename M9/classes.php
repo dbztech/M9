@@ -57,8 +57,8 @@ class database
 			print ("Could not connect to server.n");
 			die ("getMessage(): " . $e->getMessage () . "n");
 		}
-        $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        #$dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        #$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		return $dbh;
 	}
 
@@ -113,6 +113,14 @@ class database
 
 		$dbh = NULL;
     }
+    
+    public static function preparedSelect($base, $prepared) {
+        $dbh = database::sqlconn();
+        $sth = $dbh->prepare($base);
+        $sth->execute($prepared);
+        $output = $sth->fetchAll();
+        return $output;
+    }
 }
 
 class user
@@ -137,7 +145,7 @@ class user
     
     public static function create($username, $password, $type, $groups, $gravatar, $googleplus) {
         $sql = "INSERT INTO `m9`.`users` (`username`, `password`, `clientid`, `type`, `groups`, `gravatar`, `googleplus`, `id`) VALUES ('".$username."', '".hash('sha256', $password)."', NULL, '".$type."', NULL, '".md5(strtolower(trim($username)))."', NULL, NULL);";
-        if (database::select("SELECT * FROM `m9`.`users` WHERE `users`.`username` = '".$username."'")) {
+        if (database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($username));) {
             #echo "User exists";
         } else {
             #echo "Inserted";
@@ -146,7 +154,7 @@ class user
     }
     
     public static function changeUsername($user, $username) {
-        if (database::select("SELECT * FROM `m9`.`users` WHERE `users`.`username` = '".$username."'")) {
+        if (database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($username))) {
             #echo "User exists";
         } else {
             #echo "Inserted";
@@ -156,7 +164,7 @@ class user
     }
     
     public static function changePassword($user, $old, $new, $repeat) {
-        $userdata = database::select("SELECT * FROM  `users` WHERE  `id` =  '".$user."'");
+        $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `id` = ?', array($user));
         $userdata = $userdata[0];
         if (hash('sha256', $old) == $userdata['password'] && $new == $repeat) {
             database::insert("UPDATE  `m9`.`users` SET  `password` =  '".hash('sha256', $new)."' WHERE  `users`.`id` = '".$user."'");
@@ -170,7 +178,7 @@ class user
     
     public static function getUserType() {
         $user = $_COOKIE['username'];
-        $userdata = database::select("SELECT * FROM  `users` WHERE  `username` =  '".$user."'");
+        $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($user));
         $userdata = $userdata[0];
         return $userdata['type'];
     }
@@ -197,7 +205,7 @@ class user
     
     public static function getGravatar() {
         $user = $_COOKIE['username'];
-        $userdata = database::select("SELECT * FROM  `users` WHERE  `username` =  '".$user."'");
+        $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($user));
         $userdata = $userdata[0];
         return $userdata['gravatar'];
     }

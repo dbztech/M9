@@ -6,7 +6,7 @@ $login = false;
 if (count($_POST) > 0) {
     $username = filter::username($_POST['username']);
     $password = filter::password($_POST['password']);
-    $userdata = database::select("SELECT * FROM  `users` WHERE  `username` =  '".$username."'");
+    $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($username));
     $userdata = $userdata[0];
     #If login data is recieved
     if ($username == $userdata['username'] && hash('sha256', $password) == $userdata['password'] && $userdata != '') {
@@ -24,7 +24,7 @@ if (count($_POST) > 0) {
 
 if (count($_COOKIE) > 0) {
     $username = filter::username($_COOKIE['username']);
-    $userdata = database::select("SELECT * FROM  `users` WHERE  `username` =  '".$username."'");
+    $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($username));
     $userdata = $userdata[0];
     #If the user has cookies, this is very likely
     if ($username == $userdata['username'] && filter::password($_COOKIE['clientid']) == $userdata['clientid'] && $userdata != '') {
