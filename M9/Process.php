@@ -3,10 +3,12 @@ include('M9.php');
 
 if (count($_POST) > 0) {
     if (count($_COOKIE) > 0) {
-        $userdata = database::select("SELECT * FROM  `users` WHERE  `username` =  '".$_COOKIE['username']."'");
+        $username = filter::username($_COOKIE['username']);
+        $clientid = filter::password($_COOKIE['clientid']);
+        $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($username));
         $userdata = $userdata[0];
         #If the user has cookies, this is very likely
-        if (filter::username($_COOKIE['username']) == $userdata['username'] && filter::password($_COOKIE['clientid']) == $userdata['clientid'] && $userdata != '') {
+        if ($username == $userdata['username'] && $clientid == $userdata['clientid'] && $userdata != '') {
             #echo $_POST['query'];
             if ($_POST['query'] == "CreateUser") {
                 user::create($_POST['username'], $_POST['password'], $_POST['type'], NULL, NULL, NULL);
@@ -30,10 +32,12 @@ if (count($_POST) > 0) {
 
 if (count($_GET) > 0) {
     if (count($_COOKIE) > 0) {
-        $userdata = database::select("SELECT * FROM  `users` WHERE  `username` =  '".$_COOKIE['username']."'");
+        $username = filter::username($_COOKIE['username']);
+        $clientid = filter::password($_COOKIE['clientid']);
+        $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($username));
         $userdata = $userdata[0];
         #If the user has cookies, this is very likely
-        if (filter::username($_COOKIE['username']) == $userdata['username'] && filter::password($_COOKIE['clientid']) == $userdata['clientid'] && $userdata != '') {
+        if ($username == $userdata['username'] && $clientid == $userdata['clientid'] && $userdata != '') {
             #echo "GET Data";
             $data = explode('_', $_GET['query']);
             if ($data[0] == "DeleteUser") {

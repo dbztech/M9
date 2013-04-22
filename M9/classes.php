@@ -140,7 +140,7 @@ class user
     }
     
     public static function logoutSpecific($user) {
-        database::preparedInsert("UPDATE  `m9`.`users` SET  `clientid` =  NULL WHERE  `users`.`username` = ?", array($user));
+        database::preparedInsert("UPDATE  `m9`.`users` SET  `clientid` =  NULL WHERE  `users`.`id` = ?", array($user));
         setcookie('username', '');
         setcookie('clientid', '');
     }
@@ -173,13 +173,13 @@ class user
         $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `id` = ?', array($user));
         $userdata = $userdata[0];
         if (hash('sha256', $old) == $userdata['password'] && $new == $repeat) {
-            database::insert("UPDATE  `m9`.`users` SET  `password` =  '".hash('sha256', $new)."' WHERE  `users`.`id` = '".$user."'");
-            database::insert("UPDATE  `m9`.`users` SET  `clientid` =  NULL WHERE  `users`.`id` = '".$user."'");
+            database::preparedInsert("UPDATE  `m9`.`users` SET  `password` = ? WHERE  `users`.`id` = ?", array(hash('sha256', $new), $user));
+            database::preparedInsert("UPDATE  `m9`.`users` SET  `clientid` =  NULL WHERE  `users`.`id` = ?", array($user));
         }
     }
     
     public static function changeType($user, $type) {
-        database::insert("UPDATE  `m9`.`users` SET  `type` =  '".$type."' WHERE  `users`.`id` = '".$user."'");
+        database::preparedInsert("UPDATE  `m9`.`users` SET  `type` = ? WHERE  `users`.`id` = ?", array($type, $user));
     }
     
     public static function getUserType() {

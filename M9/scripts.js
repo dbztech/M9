@@ -34,7 +34,7 @@ function user() {
     };
     
     this.logout = function(id) {
-        window.location = "Process.php?query=LogouUser_"+id;
+        window.location = "Process.php?query=LogoutUser_"+id;
     };
     
     this.delete = function(id) {
