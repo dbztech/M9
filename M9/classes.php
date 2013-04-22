@@ -145,7 +145,7 @@ class user
     
     public static function create($username, $password, $type, $groups, $gravatar, $googleplus) {
         $sql = "INSERT INTO `m9`.`users` (`username`, `password`, `clientid`, `type`, `groups`, `gravatar`, `googleplus`, `id`) VALUES ('".$username."', '".hash('sha256', $password)."', NULL, '".$type."', NULL, '".md5(strtolower(trim($username)))."', NULL, NULL);";
-        if (database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($username));) {
+        if (database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($username))) {
             #echo "User exists";
         } else {
             #echo "Inserted";
