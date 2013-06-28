@@ -154,7 +154,6 @@ class user
             #echo "User exists";
         } else {
             #echo "Inserted";
-            #database::insert($sql);
             database::preparedInsert("INSERT INTO `m9`.`users` (`username`, `password`, `clientid`, `type`, `groups`, `gravatar`, `googleplus`, `id`) VALUES (?, ?, NULL, ?, NULL, ?, NULL, NULL);", array($username, hash('sha256', $password), $type, md5(strtolower(trim($username)))));
         }
     }
@@ -245,12 +244,12 @@ class data
     #Right here
     
     public static function createData($tag, $data) {
-        $sql = "INSERT INTO `m9`.`data` (`tag`, `data`, `timestamp`, `id`) VALUES ('".$tag."', '".$data."', CURRENT_TIMESTAMP, NULL);";
+        $sql = "INSERT INTO `m9`.`data` (`tag`, `data`, `timestamp`, `id`) VALUES (?, ?, CURRENT_TIMESTAMP, NULL);";
         if (database::preparedSelect("SELECT * FROM `m9`.`data` WHERE `users`.`tag` = ?", array($tag))) {
             #echo "Tag exists";
         } else {
             #echo "Inserted";
-            database::insert($sql);
+            database::preparedInsert($sql, array($tag, $data));
         }
     }
     
@@ -259,12 +258,12 @@ class data
             #echo "Tag exists";
         } else {
             #echo "Inserted";
-            database::insert("UPDATE  `m9`.`data` SET  `tag` =  '".$new."' WHERE  `data`.`id` = '".$id."'");
+            database::preparedInsert("UPDATE  `m9`.`data` SET  `tag` =  ? WHERE  `data`.`id` = ?", array($new, $id));
         }
     }
     
     public static function changeData($id, $new) {
-        database::insert("UPDATE  `m9`.`data` SET  `data` =  '".$new."' WHERE  `data`.`id` = '".$id."'");
+        database::preparedInsert("UPDATE  `m9`.`data` SET  `data` =  ? WHERE  `data`.`id` = ?", array($new, $id));
     }
     
     public static function delete($tag) {
@@ -303,7 +302,7 @@ class devmode
     public static function enable($newPage) {
         if (count($_COOKIE) > 0) {
             $username = filter::username($_COOKIE['username']);
-            $userdata = database::select("SELECT * FROM  `users` WHERE  `username` =  '".$username."'");
+            $userdata = database::preparedSelect("SELECT * FROM  `users` WHERE  `username` =  ?", array($username));
             $userdata = $userdata[0];
             #If the user has cookies, this is very likely
             if ($username == $userdata['username'] && filter::password($_COOKIE['clientid']) == $userdata['clientid'] && $userdata != '') {
