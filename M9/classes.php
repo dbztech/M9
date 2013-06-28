@@ -192,15 +192,16 @@ class user
         $userdata = database::select("SELECT * FROM  `users` WHERE 1");
         echo '<input type="hidden" name="clientid" value="'.$_COOKIE['clientid'].'" />';
         echo '<table border="1">';
-        echo '<th>Username</th><th>Password</th><th>User Type</th><th>Groups</th><th>Gravatar</th><th>Google Plus</th><th>Logout User</th>';
+        echo '<th>Username</th><th>Password</th><th>User Type</th><th>Groups</th><th>Gravatar</th><th>Logout User</th>';
         foreach ($userdata as $data) {
             echo '<tr>';
             echo '<td><input type="button" value="'.$data['username'].'" onClick="User.username('.$data['id'].')" /></td>';
             echo '<td><input type="button" value="Change Password" onClick="User.password('.$data['id'].')" /></td>';
             echo '<td><input type="button" value="'.$data['type'].'" onClick="User.type('.$data['id'].')" /></td>';
-            echo '<td>Coming Soon</td>';
+            echo '<td>';
+            echo groups::getUser($data['id']);
+            echo '</td>';
             echo '<td><img alt="Gravatar" src="http://www.gravatar.com/avatar/'.$data['gravatar'].'" /></td>';
-            echo '<td>Coming Soon</td>';
             echo '<td><input type="button" value="Logout User" onClick="User.logout('.$data['id'].')" /></td>';
             echo '<td><input type="button" value="X" onClick="User.delete('.$data['id'].')" /></td>';
             echo '</tr>';
@@ -240,8 +241,6 @@ class data
         }
         echo '</table>';
     }
-    
-    #Right here
     
     public static function createData($tag, $data) {
         $sql = "INSERT INTO `m9`.`data` (`tag`, `data`, `timestamp`, `id`) VALUES (?, ?, CURRENT_TIMESTAMP, NULL);";
@@ -309,6 +308,34 @@ class devmode
                 header('Location: '.$newPage);
             }
         }
+    }
+}
+
+
+class groups
+{
+    public static function get($user) {
+        $sql = "SELECT `groups` FROM `users` WHERE `id` = ?";
+        $output = database::preparedSelect($sql, array($user));
+        $output = $output[0];
+        $output = $output['groups'];
+        $output = explode("|", $output);
+        return $output;
+    }
+    
+    public static function getUser($user) {
+        $input = groups::get($user);
+        foreach ($input as $group) {
+            if ($group != "") {
+                echo "#".$group;
+                echo "<br>";
+            } else {
+                echo "#nothing";
+            }
+        }
+    }
+    
+    public static function set($user, $groups) {
     }
 }
 
