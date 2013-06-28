@@ -17,7 +17,9 @@ class M9
             $userdata = $userdata[0];
             #If the user has cookies, this is very likely
             $authorized = false;
+            $loggedin = false;
             if ($username == $userdata['username'] && filter::password($_COOKIE['clientid']) == $userdata['clientid'] && $userdata != '') {
+                $loggedin = true;
                 $usergroups = groups::get($userdata['id']);
                 foreach($groups as $check) {
                     foreach($usergroups as $against) {
@@ -30,7 +32,11 @@ class M9
             
             if (!$authorized) {
                 header('HTTP/1.0 401 Unauthorized');
-                echo "You are unauthorized to access this page";
+                if ($loggedin) {
+                    echo "You are not authorized to access this page! Login with a different M9 account and try again.";
+                } else {
+                    header('Location: /M9/');
+                }
                 die();
             }
         }
