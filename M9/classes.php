@@ -5,6 +5,36 @@ class M9
     public static function data($name) {
         echo data::getData($name);
     }
+    
+    public static function devmode($page) {
+        devmode::enable($page);
+    }
+    
+    public static function authorization($groups) {
+        if (count($_COOKIE) > 0) {
+            $username = filter::username($_COOKIE['username']);
+            $userdata = database::preparedSelect("SELECT * FROM  `users` WHERE  `username` =  ?", array($username));
+            $userdata = $userdata[0];
+            #If the user has cookies, this is very likely
+            $authorized = false;
+            if ($username == $userdata['username'] && filter::password($_COOKIE['clientid']) == $userdata['clientid'] && $userdata != '') {
+                $usergroups = groups::get($userdata['id']);
+                foreach($groups as $check) {
+                    foreach($usergroups as $against) {
+                        if ($check == $against) {
+                            $authorized = true;
+                        }
+                    }
+                }
+            }
+            
+            if (!$authorized) {
+                header('HTTP/1.0 401 Unauthorized');
+                echo "You are unauthorized to access this page";
+                die();
+            }
+        }
+    }
 }
 
 
@@ -327,29 +357,32 @@ class groups
         $input = groups::get($user);
         foreach ($input as $group) {
             if ($group != "") {
-                echo "#".$group;
-                echo "<br>";
+                echo "<br />";
+                echo '<input type="button" value="#'.$group.'" onClick="" />';
             } else {
-                echo "#nothing";
+                echo '<input type="button" value="#nothing" onClick="" disabled />';
             }
         }
+        echo "<br />";
+        echo '<input type="button" value="Add Group" onClick="" />';
     }
     
     public static function set($user, $groups) {
     }
+    
 }
 
 
 class filter
 {
     public static function username($input) {
-        mysql_real_escape_string($input);
+        #mysql_real_escape_string($input);
         $output = filter_var($input, FILTER_VALIDATE_EMAIL);
         return $output;
     }
     
     public static function password($input) {
-        mysql_real_escape_string($input);
+        #mysql_real_escape_string($input);
         return $input;
     }
 }

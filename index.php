@@ -1,4 +1,4 @@
-<?php include('M9/M9.php'); devmode::enable('index2.php'); ?>
+<?php include('M9/M9.php'); M9::devmode('index2.php'); ?>
 <!doctype html>
 <html>
     <head></head>
