@@ -11,7 +11,7 @@ if (count($_POST) > 0) {
         if ($username == $userdata['username'] && $clientid == $userdata['clientid'] && $userdata != '') {
             #echo $_POST['query'];
             if ($_POST['query'] == "CreateUser") {
-                user::create($_POST['username'], $_POST['password'], $_POST['type'], NULL, NULL, NULL);
+                user::create($_POST['username'], $_POST['password'], $_POST['type'], NULL, NULL);
             } elseif ($_POST['query'] == "ChangeUsername") {
                 user::changeUsername($_POST['UserId'], $_POST['new']);
             } elseif ($_POST['query'] == "ChangePassword") {

@@ -179,12 +179,12 @@ class user
         database::preparedInsert("DELETE FROM `m9`.`users` WHERE `users`.`id` = ?", array($user));
     }
     
-    public static function create($username, $password, $type, $groups, $gravatar, $googleplus) {
+    public static function create($username, $password, $type, $groups, $gravatar) {
         if (database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($username))) {
             #echo "User exists";
         } else {
             #echo "Inserted";
-            database::preparedInsert("INSERT INTO `m9`.`users` (`username`, `password`, `clientid`, `type`, `groups`, `gravatar`, `googleplus`, `id`) VALUES (?, ?, NULL, ?, NULL, ?, NULL, NULL);", array($username, hash('sha256', $password), $type, md5(strtolower(trim($username)))));
+            database::preparedInsert("INSERT INTO `m9`.`users` (`username`, `password`, `clientid`, `type`, `groups`, `gravatar`, `id`) VALUES (?, ?, NULL, ?, NULL, ?, NULL);", array($username, hash('sha256', $password), $type, md5(strtolower(trim($username)))));
         }
     }
     
