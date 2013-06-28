@@ -220,7 +220,7 @@ class user
 class data
 {
     public static function getData($tag) {
-        $data = database::select("SELECT * FROM  `data` WHERE  `tag` =  '".$tag."'");
+        $data = database::preparedSelect("SELECT * FROM  `data` WHERE  `tag` =  ?", array($tag));
         $data = $data[0];
         return $data['data'];
     }
@@ -242,9 +242,11 @@ class data
         echo '</table>';
     }
     
+    #Right here
+    
     public static function createData($tag, $data) {
         $sql = "INSERT INTO `m9`.`data` (`tag`, `data`, `timestamp`, `id`) VALUES ('".$tag."', '".$data."', CURRENT_TIMESTAMP, NULL);";
-        if (database::select("SELECT * FROM `m9`.`data` WHERE `users`.`tag` = '".$tag."'")) {
+        if (database::preparedSelect("SELECT * FROM `m9`.`data` WHERE `users`.`tag` = ?", array($tag))) {
             #echo "Tag exists";
         } else {
             #echo "Inserted";
@@ -253,7 +255,7 @@ class data
     }
     
     public static function changeTag($id, $new) {
-        if (database::select("SELECT * FROM `m9`.`data` WHERE `data`.`tag` = '".$new."'")) {
+        if (database::preparedSelect("SELECT * FROM `m9`.`data` WHERE `data`.`tag` = ?", array($tag))) {
             #echo "Tag exists";
         } else {
             #echo "Inserted";
@@ -263,6 +265,10 @@ class data
     
     public static function changeData($id, $new) {
         database::insert("UPDATE  `m9`.`data` SET  `data` =  '".$new."' WHERE  `data`.`id` = '".$id."'");
+    }
+    
+    public static function delete($tag) {
+        database::preparedInsert("DELETE FROM `m9`.`data` WHERE `data`.`id` = ?", array($tag));
     }
 }
 

@@ -44,6 +44,8 @@ if (count($_GET) > 0) {
                 user::delete($data[1]);
             } elseif ($data[0] == "LogoutUser") {
                 user::logoutSpecific($data[1]);
+            } elseif ($data[0] == "DeleteData") {
+                data::delete($data[1]);
             }
         }
     }
