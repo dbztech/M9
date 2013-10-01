@@ -248,7 +248,7 @@ class user
             echo '</td>';
             echo '<td><img alt="Gravatar" src="http://www.gravatar.com/avatar/'.$data['gravatar'].'" /></td>';
             echo '<td><input type="button" value="Logout User" onClick="User.logout('.$data['id'].')" /></td>';
-            echo '<td><input type="button" value="X" onClick="User.delete('.$data['id'].')" /></td>';
+            echo '<td><input type="button" value="X" class="btn btn-danger" onClick="User.delete('.$data['id'].')" /></td>';
             echo '</tr>';
         }
         echo '</table>';
@@ -281,7 +281,7 @@ class data
             echo '<td id="'.$data['id'].'">'.$data['data'].'</td>';
             echo '<td>'.$data['timestamp'].'</td>';
             echo '<td><input type="button" value="Edit" onClick="Data.edit('.$data['id'].')" /></td>';
-            echo '<td><input type="button" value="X" onClick="Data.delete('.$data['id'].')" /></td>';
+            echo '<td><input type="button" value="X" class="btn btn-danger" onClick="Data.delete('.$data['id'].')" /></td>';
             echo '</tr>';
         }
         echo '</table>';
