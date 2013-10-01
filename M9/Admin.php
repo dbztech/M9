@@ -10,6 +10,7 @@
     <body onload="Core.load();">
         <div id="nav">
             <img alt="Profile Pic" src="http://www.gravatar.com/avatar/<?php echo user::getGravatar(); ?>?s=400" id="profilepic" />
+            <input type="button" value="Logout" class="btn btn-primary" onclick="window.location = '/M9/Logout.php'" />
         </div>
         <div id="content">
             <h1>M9 Admin Panel</h1>
@@ -17,7 +18,6 @@
                 cards::adminPanel();
             ?>
             <hr />
-            <input type="button" value="Logout" onclick="window.location = '/M9/Logout.php'" />
         </div>
     </body>
 </html>
