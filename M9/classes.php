@@ -41,6 +41,15 @@ class M9
             }
         }
     }
+    
+    public static function addframework($frameworkname) {
+        if ($frameworkname == "Bootstrap") {
+            echo '<link href="/M9/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">';
+            echo '<script src="/M9/bootstrap/js/bootstrap.min.js"></script>';
+        } else if ($frameworkname == "jQuery") {
+            echo '<script src="http://code.jquery.com/jquery.js"></script>';
+        }
+    }
 }
 
 
@@ -55,7 +64,7 @@ class database
     static protected $database = 'scouting2013';
     static protected $prefix = '';
 
-	public static function setcredentials($user, $password, $host = '127.0.0.1', $db = 'scouting2013', $pre = '') {
+	public static function setcredentials($user, $password, $host = '127.0.0.1', $db = 'M9', $pre = '') {
     	// property declaration
     	$result = 'Credential(s) not set: ';
     	$error = 0;
