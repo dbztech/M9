@@ -236,7 +236,7 @@ class user
     public static function userList() {
         $userdata = database::select("SELECT * FROM  `users` WHERE 1");
         echo '<input type="hidden" name="clientid" value="'.$_COOKIE['clientid'].'" />';
-        echo '<table border="1">';
+        echo '<table class="table table-bordered">';
         echo '<th>Username</th><th>Password</th><th>User Type</th><th>Groups</th><th>Gravatar</th><th>Logout User</th>';
         foreach ($userdata as $data) {
             echo '<tr>';
@@ -273,7 +273,7 @@ class data
     public static function dataList() {
         $listdata = database::select("SELECT * FROM  `data` WHERE 1");
         echo '<input type="hidden" name="clientid" value="'.$_COOKIE['clientid'].'" />';
-        echo '<table border="1">';
+        echo '<table class="table table-bordered">';
         echo '<th>Tag</th><th>Data</th><th>Data Modified</th>';
         foreach ($listdata as $data) {
             echo '<tr>';
