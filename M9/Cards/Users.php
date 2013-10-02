@@ -1,5 +1,5 @@
-<h1>Users</h1>
-<p><a href="#Users" onclick="Core.showId('ManageUsers')">Manage Users</a> &#8226 <a href="#Users" onclick="Core.showId('CreateUsers')">Create Users</a></p>
+<p class="lead">Manage Users</p>
+<p><a href="#Users" class="btn btn-primary" onclick="Core.showId('ManageUsers')">Change Users</a> &#8226 <a href="#Users" class="btn btn-primary" onclick="Core.showId('CreateUsers')">Create Users</a></p>
 <div id="ManageUsers">
     <h2>Manage Users</h2>
     <?php user::userList(); ?>

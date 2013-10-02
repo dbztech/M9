@@ -1,5 +1,5 @@
-<h1>Data</h1>
-<p><a href="#Data" onclick="Core.showId('ManageData')">Manage Data</a> &#8226 <a href="#Data" onclick="Core.showId('CreateData')">Create Data</a></p>
+<p class="lead">Manage Content</p>
+<p><a href="#Data" class="btn btn-primary" onclick="Core.showId('ManageData')">Change Content</a> &#8226 <a href="#Data" class="btn btn-primary" onclick="Core.showId('CreateData')">Create Content</a></p>
 <div id="ManageData">
     <h2>Manage Data</h2>
     <?php data::dataList(); ?>
