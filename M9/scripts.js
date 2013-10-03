@@ -17,6 +17,35 @@ function core() {
 Core = new core;
 
 
+function interface() {
+    this.panelCount = 0;
+    
+    this.addPanel = function(panelId) {
+        this.panelCount++;
+        
+        var bodyWidth = 100-((this.panelCount*5)+10);
+        
+        console.log(bodyWidth);
+        document.getElementById("content").style.width = bodyWidth.toString()+"%";
+        
+        Core.showId(panelId);
+    };
+    
+    this.removePanel = function(panelId) {
+        this.panelCount--;
+        
+        var bodyWidth = 100-((this.panelCount*5)+10);
+        
+        console.log(bodyWidth);
+        document.getElementById("content").style.width = bodyWidth.toString()+"%";
+        
+        Core.hideId(panelId);
+    };
+}
+
+Interface = new interface;
+
+
 function user() {
     this.username = function(id) {
         Core.showId('ChangeUsername');
