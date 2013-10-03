@@ -2,12 +2,14 @@
 include('M9.php');
 
 $login = false;
+$postrec = false;
 
 if (count($_POST) > 0) {
     $username = filter::username($_POST['username']);
     $password = filter::password($_POST['password']);
     $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($username));
     $userdata = $userdata[0];
+    $postrec = true;
     #If login data is recieved
     if ($username == $userdata['username'] && hash('sha256', $password) == $userdata['password'] && $userdata != '') {
         setcookie("username", $username, time()+10000, "/");
@@ -17,7 +19,8 @@ if (count($_POST) > 0) {
         header('Location: /M9/');
         $login = true;
     } else {
-        echo "Password invalid";
+        //echo "Password invalid";
+        include('Forbidden.php');
         $login = false;
     }
 }
@@ -37,7 +40,9 @@ if (count($_COOKIE) > 0) {
 if ($login) {
     include('Admin.php');
 } else {
-    include('Login.php');
+    if (!$postrec) {
+        include('Login.php');
+    }
 }
 
 ?>
