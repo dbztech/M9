@@ -25,22 +25,22 @@
             <div class="subnav" id="CreateUsersNav">
                 <p>Create Users</p>
             </div>
-            <div class="subnav" id="ChangeDataNav">
+            <div class="subnav navtwo" id="ChangeDataContentNav">
                 <p>Change Data</p>
             </div>
-            <div class="subnav" id="ChangeDataNav">
+            <div class="subnav navtwo" id="ChangeDataTagNav">
                 <p>Change Tag</p>
             </div>
-            <div class="subnav" id="ChangeUsernaveNav">
+            <div class="subnav navtwo" id="ChangeUsernameNav">
                 <p>Change Username</p>
             </div>
-            <div class="subnav" id="ChangePasswordNav">
+            <div class="subnav navtwo" id="ChangeUserPasswordNav">
                 <p>Change Password</p>
             </div>
-            <div class="subnav" id="ChangeUserTypeNav">
+            <div class="subnav navtwo" id="ChangeUserTypeNav">
                 <p>Change User Type</p>
             </div>
-            <div class="subnav" id="AddGroupNav">
+            <div class="subnav navtwo" id="AddGroupNav">
                 <p>Add Group</p>
             </div>
         </div>

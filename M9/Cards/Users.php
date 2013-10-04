@@ -1,2 +1,2 @@
 <p class="lead">Manage Users</p>
-<p><a href="#Users" class="btn btn-primary" onclick="Core.showId('ChangeUsers')">Change Users</a> &#8226 <a href="#CreateUsers" class="btn btn-primary" onclick="Core.showId('CreateUsers')">Create Users</a></p>
+<p><a href="#Users" class="btn btn-primary" onclick="User.change();">Change Users</a> &#8226 <a href="#CreateUsers" class="btn btn-primary" onclick="User.create();">Create Users</a></p>

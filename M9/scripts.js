@@ -9,6 +9,16 @@ function core() {
         document.getElementById(id).style.display = "none";
     }
     
+    this.showViews = function(element, index, array) {
+        //console.log(element);
+        Core.showId(element);
+    }
+    
+    this.hideViews = function(element, index, array) {
+        //console.log(element);
+        Core.hideId(element);
+    }
+    
     this.load = function() {
         //Called on load
     }
@@ -41,6 +51,27 @@ function interface() {
         
         Core.hideId(panelId);
     }
+    
+    this.popPanel = function(panelToPop, viewToShow) {
+        Interface.removePanel(panelToPop);
+        
+        Interface.showView(viewToShow);
+    }
+    
+    this.modalPanel = function(panelToModal, viewToShow) {
+        Interface.addPanel(panelToModal);
+        
+        Interface.showView(viewToShow);
+    }
+    
+    this.showView = function(viewToShow) {
+        var allViews = ['Data', 'ChangeData', 'CreateData', 'ChangeDataContent', 'ChangeDataTag', 'Users', 'ChangeUsers', 'CreateUsers', 'ChangeUsername', 'ChangeUserPassword', 'ChangeUserType'];
+        
+        allViews.forEach(Core.hideViews);
+        
+        Core.showId(viewToShow);
+        
+    }
 }
 
 Interface = new interface;
@@ -48,17 +79,17 @@ Interface = new interface;
 
 function user() {
     this.username = function(id) {
-        Core.showId('ChangeUsername');
+        Interface.modalPanel("ChangeUsernameNav", "ChangeUsername");
         document.getElementById('ChangeUsernameId').value = id;
     }
     
     this.password = function(id) {
-        Core.showId('ChangeUserPassword');
+        Interface.modalPanel("ChangeUserPasswordNav", "ChangeUserPassword");
         document.getElementById('ChangePasswordId').value = id;
     }
     
     this.type = function(id) {
-        Core.showId('ChangeUserType');
+        Interface.modalPanel("ChangeUserTypeNav", "ChangeUserType");
         document.getElementById('ChangeTypeId').value = id;
     }
     
@@ -69,24 +100,40 @@ function user() {
     this.delete = function(id) {
         window.location = "Process.php?query=DeleteUser_"+id;
     }
+    
+    this.change = function(id) {
+        Interface.modalPanel("ChangeUsersNav", "ChangeUsers");
+    }
+    
+    this.create = function(id) {
+        Interface.modalPanel("CreateUsersNav", "CreateUsers");
+    }
 }
 
 User = new user;
 
 function data() {
     this.edit = function(id) {
-        Core.showId('ChangeDataContent');
+        Interface.modalPanel("ChangeDataContentNav", "ChangeDataContent");
         document.getElementById('ChangeDataId').value = id;
         document.getElementById('ChangeDataText').value = document.getElementById(id).innerHTML;
     }
     
     this.tag = function(id) {
-        Core.showId('ChangeDataTag');
+        Interface.modalPanel("ChangeDataTagNav", "ChangeDataTag");
         document.getElementById('ChangeTagId').value = id;
     }
     
     this.delete = function(id) {
         window.location = "Process.php?query=DeleteData_"+id;
+    }
+    
+    this.change = function(id) {
+        Interface.modalPanel("ChangeContentNav", "ChangeData");
+    }
+    
+    this.create = function(id) {
+        Interface.modalPanel("CreateContentNav", "CreateData");
     }
 }
 
