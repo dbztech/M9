@@ -332,9 +332,9 @@ class cards
     public static function adminPanel() {
         $type = user::getUserType();
         if ($type == "admin") {
-            $cards = Array('Data', 'Users');
+            $cards = Array('Data', 'ChangeData', 'CreateData', 'ChangeDataContent', 'ChangeDataTag', 'Users', 'ChangeUsers', 'CreateUsers', 'ChangeUsername', 'ChangeUserPassword', 'ChangeUserType');
         } elseif ($type == "standard") {
-            $cards = Array('Data');
+            $cards = Array('Data', 'ChangeData', 'CreateData', 'ChangeDataContent', 'ChangeDataTag');
         }
         cards::loadCards($cards);
     }

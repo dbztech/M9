@@ -24,6 +24,16 @@ table {
     text-align: center;
 }
 
+.subnav {
+    float: left;
+    height: 100%;
+    width: 5%;
+    background: orange;
+    position: fixed;
+    left: 10%;
+    display: none;
+}
+
 #nav {
     float: left;
     height: 100%;
@@ -47,7 +57,7 @@ table {
     padding: 4%;
 }
 
-#ManageUsers {
+#ChangeUsers {
     display: none;
 }
 
@@ -59,15 +69,15 @@ table {
     display: none;
 }
 
-#ChangePassword {
+#ChangeUserPassword {
     display: none;
 }
 
-#ChangeType {
+#ChangeUserType {
     display: none;
 }
 
-#ManageData {
+#ChangeData {
     display: none;
 }
 
@@ -75,10 +85,10 @@ table {
     display: none;
 }
 
-#ChangeTag {
+#ChangeDataTag {
     display: none;
 }
 
-#ChangeData {
+#ChangeDataContent {
     display: none;
 }

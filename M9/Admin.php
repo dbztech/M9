@@ -12,6 +12,38 @@
             <img alt="Profile Pic" src="http://www.gravatar.com/avatar/<?php echo user::getGravatar(); ?>?s=400" id="profilepic" />
             <input type="button" value="Logout" class="btn" onclick="window.location = '/M9/Logout.php'" />
         </div>
+        <div id="subnavcontainer">
+            <div class="subnav" id="ChangeContentNav">
+                <p>Change Content</p>
+            </div>
+            <div class="subnav" id="CreateContentNav">
+                <p>Create Content</p>
+            </div>
+            <div class="subnav" id="ChangeUsersNav">
+                <p>Change Users</p>
+            </div>
+            <div class="subnav" id="CreateUsersNav">
+                <p>Create Users</p>
+            </div>
+            <div class="subnav" id="ChangeDataNav">
+                <p>Change Data</p>
+            </div>
+            <div class="subnav" id="ChangeDataNav">
+                <p>Change Tag</p>
+            </div>
+            <div class="subnav" id="ChangeUsernaveNav">
+                <p>Change Username</p>
+            </div>
+            <div class="subnav" id="ChangePasswordNav">
+                <p>Change Password</p>
+            </div>
+            <div class="subnav" id="ChangeUserTypeNav">
+                <p>Change User Type</p>
+            </div>
+            <div class="subnav" id="AddGroupNav">
+                <p>Add Group</p>
+            </div>
+        </div>
         <div id="content">
             <h1>M9 Admin Panel</h1>
             <hr />

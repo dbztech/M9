@@ -3,15 +3,15 @@
 function core() {
     this.showId = function(id) {
         document.getElementById(id).style.display = "block";
-    };
+    }
     
     this.hideId = function(id) {
         document.getElementById(id).style.display = "none";
-    };
+    }
     
     this.load = function() {
         //Called on load
-    };
+    }
 }
 
 Core = new core;
@@ -29,7 +29,7 @@ function interface() {
         document.getElementById("content").style.width = bodyWidth.toString()+"%";
         
         Core.showId(panelId);
-    };
+    }
     
     this.removePanel = function(panelId) {
         this.panelCount--;
@@ -40,7 +40,7 @@ function interface() {
         document.getElementById("content").style.width = bodyWidth.toString()+"%";
         
         Core.hideId(panelId);
-    };
+    }
 }
 
 Interface = new interface;
@@ -50,44 +50,44 @@ function user() {
     this.username = function(id) {
         Core.showId('ChangeUsername');
         document.getElementById('ChangeUsernameId').value = id;
-    };
+    }
     
     this.password = function(id) {
-        Core.showId('ChangePassword');
+        Core.showId('ChangeUserPassword');
         document.getElementById('ChangePasswordId').value = id;
-    };
+    }
     
     this.type = function(id) {
-        Core.showId('ChangeType');
+        Core.showId('ChangeUserType');
         document.getElementById('ChangeTypeId').value = id;
-    };
+    }
     
     this.logout = function(id) {
         window.location = "Process.php?query=LogoutUser_"+id;
-    };
+    }
     
     this.delete = function(id) {
         window.location = "Process.php?query=DeleteUser_"+id;
-    };
+    }
 }
 
 User = new user;
 
 function data() {
     this.edit = function(id) {
-        Core.showId('ChangeData');
+        Core.showId('ChangeDataContent');
         document.getElementById('ChangeDataId').value = id;
         document.getElementById('ChangeDataText').value = document.getElementById(id).innerHTML;
-    };
+    }
     
     this.tag = function(id) {
-        Core.showId('ChangeTag');
+        Core.showId('ChangeDataTag');
         document.getElementById('ChangeTagId').value = id;
-    };
+    }
     
     this.delete = function(id) {
         window.location = "Process.php?query=DeleteData_"+id;
-    };
+    }
 }
 
 Data = new data;
