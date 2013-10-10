@@ -5,5 +5,5 @@
     <br />
     <textarea name="data" placeholder="Insert your content here..." required></textarea>
     <br />
-    <input type="submit" value="Create Data" />
+    <input type="submit" class="btn btn-success" value="Create Data" />
 </form>

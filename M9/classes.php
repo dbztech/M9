@@ -240,15 +240,15 @@ class user
         echo '<th>Username</th><th>Password</th><th>User Type</th><th>Groups</th><th>Gravatar</th><th>Logout User</th>';
         foreach ($userdata as $data) {
             echo '<tr>';
-            echo '<td><input type="button" value="'.$data['username'].'" onClick="User.username('.$data['id'].')" /></td>';
-            echo '<td><input type="button" value="Change Password" onClick="User.password('.$data['id'].')" /></td>';
-            echo '<td><input type="button" value="'.$data['type'].'" onClick="User.type('.$data['id'].')" /></td>';
+            echo '<td><input type="button" class="btn" value="'.$data['username'].'" onClick="User.username('.$data['id'].')" /></td>';
+            echo '<td><input type="button" class="btn" value="Change Password" onClick="User.password('.$data['id'].')" /></td>';
+            echo '<td><input type="button" class="btn" value="'.$data['type'].'" onClick="User.type('.$data['id'].')" /></td>';
             echo '<td>';
             echo groups::getUser($data['id']);
             echo '</td>';
-            echo '<td><img alt="Gravatar" src="http://www.gravatar.com/avatar/'.$data['gravatar'].'" /></td>';
-            echo '<td><input type="button" value="Logout User" onClick="User.logout('.$data['id'].')" /></td>';
-            echo '<td><input type="button" value="X" class="btn btn-danger" onClick="User.delete('.$data['id'].')" /></td>';
+            echo '<td><img alt="Gravatar" class="img-circle" src="http://www.gravatar.com/avatar/'.$data['gravatar'].'" /></td>';
+            echo '<td><input type="button" class="btn btn-warning" value="Logout User" onClick="User.logout('.$data['id'].')" /></td>';
+            echo '<td><input type="button" class="btn btn-danger" value="X" onClick="User.delete('.$data['id'].')" /></td>';
             echo '</tr>';
         }
         echo '</table>';
@@ -277,10 +277,10 @@ class data
         echo '<th>Tag</th><th>Data</th><th>Data Modified</th>';
         foreach ($listdata as $data) {
             echo '<tr>';
-            echo '<td><input type="button" value="'.$data['tag'].'" onClick="Data.tag('.$data['id'].')" /></td>';
+            echo '<td><input type="button" class="btn" value="'.$data['tag'].'" onClick="Data.tag('.$data['id'].')" /></td>';
             echo '<td id="'.$data['id'].'">'.$data['data'].'</td>';
             echo '<td>'.$data['timestamp'].'</td>';
-            echo '<td><input type="button" value="Edit" onClick="Data.edit('.$data['id'].')" /></td>';
+            echo '<td><input type="button" class="btn btn-primary" value="Edit" onClick="Data.edit('.$data['id'].')" /></td>';
             echo '<td><input type="button" value="X" class="btn btn-danger" onClick="Data.delete('.$data['id'].')" /></td>';
             echo '</tr>';
         }
@@ -377,14 +377,15 @@ class groups
         $input = groups::get($user);
         foreach ($input as $group) {
             if ($group != "") {
+                echo '<input type="button" class="btn" value="#'.$group.'" onClick="" />';
                 echo "<br />";
-                echo '<input type="button" value="#'.$group.'" onClick="" />';
             } else {
-                echo '<input type="button" value="#nothing" onClick="" disabled />';
+                echo '<input type="button" class="btn" value="#nothing" onClick="" disabled />';
+                echo "<br />";
             }
         }
         echo "<br />";
-        echo '<input type="button" value="Add Group" onClick="" />';
+        echo '<input type="button" class="btn btn-success" value="Add Group" onClick="" />';
     }
     
     public static function set($user, $groups) {
