@@ -5,18 +5,19 @@
     <head>
         <?php m9::addframework('Bootstrap'); ?>
         <link rel="stylesheet" href="styles.css" />
+        <?php m9::addframework('jQuery'); ?>
         <script type="text/javascript" src="scripts.js"></script>
     </head>
     <body onload="Core.load();">
         <div id="nav">
-            <img alt="Profile Pic" src="http://www.gravatar.com/avatar/<?php echo user::getGravatar(); ?>?s=400" id="profilepic" />
+            <img alt="Profile Pic" src="http://www.gravatar.com/avatar/<?php echo user::getGravatar(); ?>?s=400" class="profilepic img-circle" />
             <input type="button" value="Logout" class="btn" onclick="window.location = '/M9/Logout.php'" />
         </div>
         <div id="subnavcontainer">
-            <div class="subnav" id="ChangeContentNav">
+            <div class="subnav" id="ChangeDataNav">
                 <p>Change Content</p>
             </div>
-            <div class="subnav" id="CreateContentNav">
+            <div class="subnav" id="CreateDataNav">
                 <p>Create Content</p>
             </div>
             <div class="subnav" id="ChangeUsersNav">
@@ -45,6 +46,7 @@
             </div>
         </div>
         <div id="content">
+            <a class="btn btn-info back" id="Back" onclick="Interface.popPanel();"><i class="icon-chevron-left"></i> Back</a>
             <h1>M9 Admin Panel</h1>
             <hr />
             <?php

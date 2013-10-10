@@ -29,6 +29,9 @@ Core = new core;
 
 function interface() {
     this.panelCount = 0;
+    this.currentPanel = "";
+    this.lastView = "";
+    
     
     this.addPanel = function(panelId) {
         this.panelCount++;
@@ -46,7 +49,7 @@ function interface() {
         
         var bodyWidth = 100-((this.panelCount*5)+10);
         
-        console.log(bodyWidth);
+        //console.log(bodyWidth);
         document.getElementById("content").style.width = bodyWidth.toString()+"%";
         
         Core.hideId(panelId);
@@ -58,10 +61,19 @@ function interface() {
         Interface.showView(viewToShow);
     }
     
-    this.modalPanel = function(panelToModal, viewToShow) {
+    this.modalPanel = function(panelToModal, viewToShow, currentView) {
+        Interface.lastView = currentView;
+        Interface.currentPanel = panelToModal;
+        
         Interface.addPanel(panelToModal);
         
         Interface.showView(viewToShow);
+    }
+    
+    this.popPanel = function() {
+        Interface.removePanel(Interface.currentPanel);
+        
+        Interface.showView(Interface.lastView);
     }
     
     this.showView = function(viewToShow) {
@@ -69,7 +81,19 @@ function interface() {
         
         allViews.forEach(Core.hideViews);
         
-        Core.showId(viewToShow);
+        if (viewToShow == "ChangeData" || viewToShow == "CreateData" || viewToShow == "ChangeUsers" || viewToShow == "CreateUsers") {
+            Interface.lastView = "homeviews";
+            Interface.currentPanel = viewToShow+"Nav";
+        }
+        
+        if (viewToShow == "homeviews") {
+            Core.showId("Data");
+            Core.showId("Users");
+            Core.hideId("Back");
+        } else {
+            Core.showId(viewToShow);
+            Core.showId("Back");
+        }
         
     }
 }
@@ -79,17 +103,17 @@ Interface = new interface;
 
 function user() {
     this.username = function(id) {
-        Interface.modalPanel("ChangeUsernameNav", "ChangeUsername");
+        Interface.modalPanel("ChangeUsernameNav", "ChangeUsername", "ChangeUsers");
         document.getElementById('ChangeUsernameId').value = id;
     }
     
     this.password = function(id) {
-        Interface.modalPanel("ChangeUserPasswordNav", "ChangeUserPassword");
+        Interface.modalPanel("ChangeUserPasswordNav", "ChangeUserPassword", "ChangeUsers");
         document.getElementById('ChangePasswordId').value = id;
     }
     
     this.type = function(id) {
-        Interface.modalPanel("ChangeUserTypeNav", "ChangeUserType");
+        Interface.modalPanel("ChangeUserTypeNav", "ChangeUserType", "ChangeUsers");
         document.getElementById('ChangeTypeId').value = id;
     }
     
@@ -102,11 +126,11 @@ function user() {
     }
     
     this.change = function(id) {
-        Interface.modalPanel("ChangeUsersNav", "ChangeUsers");
+        Interface.modalPanel("ChangeUsersNav", "ChangeUsers", "homeviews");
     }
     
     this.create = function(id) {
-        Interface.modalPanel("CreateUsersNav", "CreateUsers");
+        Interface.modalPanel("CreateUsersNav", "CreateUsers", "homeviews");
     }
 }
 
@@ -114,13 +138,13 @@ User = new user;
 
 function data() {
     this.edit = function(id) {
-        Interface.modalPanel("ChangeDataContentNav", "ChangeDataContent");
+        Interface.modalPanel("ChangeDataContentNav", "ChangeDataContent", "ChangeData");
         document.getElementById('ChangeDataId').value = id;
         document.getElementById('ChangeDataText').value = document.getElementById(id).innerHTML;
     }
     
     this.tag = function(id) {
-        Interface.modalPanel("ChangeDataTagNav", "ChangeDataTag");
+        Interface.modalPanel("ChangeDataTagNav", "ChangeDataTag", "ChangeData");
         document.getElementById('ChangeTagId').value = id;
     }
     
@@ -129,11 +153,11 @@ function data() {
     }
     
     this.change = function(id) {
-        Interface.modalPanel("ChangeContentNav", "ChangeData");
+        Interface.modalPanel("ChangeDataNav", "ChangeData", "homeviews");
     }
     
     this.create = function(id) {
-        Interface.modalPanel("CreateContentNav", "CreateData");
+        Interface.modalPanel("CreateDataNav", "CreateData", "homeviews");
     }
 }
 

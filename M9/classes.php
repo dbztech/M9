@@ -47,7 +47,7 @@ class M9
             echo '<link href="/M9/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">';
             echo '<script src="/M9/bootstrap/js/bootstrap.min.js"></script>';
         } else if ($frameworkname == "jQuery") {
-            echo '<script src="http://code.jquery.com/jquery.js"></script>';
+            echo '<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>';
         }
     }
 }
@@ -320,7 +320,12 @@ class cards
     public static function loadCards($cardsToLoad) {
         foreach($cardsToLoad as $currentCard) {
             $filename = "Cards/".$currentCard.".php";
-            echo '<div class="card" id="'.$currentCard.'">';
+            if ($currentCard == "Data" || $currentCard == "Users") {
+                echo '<div class="card homeviews" id="'.$currentCard.'">';
+            } else {
+                echo '<div class="card" id="'.$currentCard.'">';
+            }
+            
             #echo $filename;
             if (file_exists($filename)) {
                 include($filename);
