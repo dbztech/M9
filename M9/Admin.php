@@ -3,9 +3,9 @@
 <!-- It will be included by index.php -->
 <html>
     <head>
+        <?php m9::addframework('jQuery'); ?>
         <?php m9::addframework('Bootstrap'); ?>
         <link rel="stylesheet" href="styles.css" />
-        <?php m9::addframework('jQuery'); ?>
         <script type="text/javascript" src="scripts.js"></script>
     </head>
     <body onload="Core.load();">
