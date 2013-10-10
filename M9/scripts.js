@@ -38,7 +38,7 @@ function interface() {
         
         var bodyWidth = 100-((this.panelCount*5)+10);
         
-        console.log(bodyWidth);
+        //console.log(bodyWidth);
         document.getElementById("content").style.width = bodyWidth.toString()+"%";
         
         Core.showId(panelId);
