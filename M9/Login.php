@@ -13,7 +13,7 @@
             <form action="/M9/" method="post">
                 <input type="email" name="username" placeholder="Email" required /><br />
                 <input type="password" name="password" placeholder="Password" required /><br />
-                <input type="submit" class="btn btn-primary" />
+                <input type="submit" class="btn btn-primary" value="Login" />
             </form>
         </div>
     </body>
