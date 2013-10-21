@@ -216,7 +216,7 @@ class user
     public static function changePassword($user, $old, $new, $repeat) {
         $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `id` = ?', array($user));
         $userdata = $userdata[0];
-        if (hash('sha256', $old) == $userdata['password'] && $new == $repeat) {
+        if ($new == $repeat) {
             database::preparedInsert("UPDATE  `m9`.`users` SET  `password` = ? WHERE  `users`.`id` = ?", array(hash('sha256', $new), $user));
             database::preparedInsert("UPDATE  `m9`.`users` SET  `clientid` =  NULL WHERE  `users`.`id` = ?", array($user));
         }
