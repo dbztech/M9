@@ -1,7 +1,8 @@
 /* M9 CSS Document */
 
 html, body {
-    background: white;
+    background: url(Resources/Images/background.jpg);
+    background-size: cover;
     width: 100%;
     height: 100%;
     margin: 0px;
@@ -28,15 +29,16 @@ table {
     float: left;
     height: 100%;
     width: 5%;
-    background: orange;
+    background: rgba(255, 166, 0, 0.7);
     position: fixed;
     left: 10%;
     display: none;
+    color: white;
 }
 
 .navtwo {
     left: 15%;
-    background: red;
+    background: rgba(255, 0, 0, 0.7);
 }
 
 .back {
@@ -51,7 +53,7 @@ table {
     float: left;
     height: 100%;
     width: 10%;
-    background: gray;
+    background: rgba(255, 255, 255, 0.3);
     position: fixed;
 }
 
@@ -65,8 +67,7 @@ table {
 #content {
     float: right;
     width: 90%;
-    background: white;
-    color: black;
+    color: white;
 }
 
 #ChangeUsers {
