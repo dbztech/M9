@@ -49,6 +49,11 @@ table {
     display: none;
 }
 
+.hero-unit {
+    background: none;
+    color: white;
+}
+
 #nav {
     float: left;
     height: 100%;

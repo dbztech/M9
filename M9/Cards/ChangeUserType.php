@@ -5,6 +5,6 @@
     <select name="new">
         <option value="admin">Admin</option>
         <option value="standard">Standard</option>
-    </select>
-    <input type="submit" value="Change Type" />
+    </select><br />
+    <input type="submit" class="btn btn-primary" value="Change Type" />
 </form>

@@ -5,6 +5,7 @@
     <head>
         <?php m9::addframework('jQuery'); ?>
         <?php m9::addframework('Bootstrap'); ?>
+        <?php m9::addframework('TinyMCE'); ?>
         <link rel="stylesheet" href="styles.css" />
         <script type="text/javascript" src="scripts.js"></script>
     </head>

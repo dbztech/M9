@@ -140,7 +140,8 @@ function data() {
     this.edit = function(id) {
         Interface.modalPanel("ChangeDataContentNav", "ChangeDataContent", "ChangeData");
         document.getElementById('ChangeDataId').value = id;
-        document.getElementById('ChangeDataText').value = document.getElementById(id).innerHTML;
+        //document.getElementById('ChangeDataText').value = document.getElementById(id).innerHTML;
+        tinyMCE.get("ChangeDataText").setContent(document.getElementById(id).innerHTML);
     }
     
     this.tag = function(id) {
