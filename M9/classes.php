@@ -71,7 +71,7 @@ class M9
             echo '<link href="/M9/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">';
             echo '<script src="/M9/bootstrap/js/bootstrap.min.js"></script>';
         } else if ($frameworkname == "jQuery") {
-            echo '<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>';
+            echo '<script src="https://code.jquery.com/jquery.js"></script>';
         } else if ($frameworkname == "TinyMCE") {
             echo '<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>';
         }
