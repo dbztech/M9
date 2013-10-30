@@ -18,10 +18,15 @@ class M9
     
     public static function info($output) {
         M9::$time = microtime(true);
-        $load = sys_getloadavg();
         if ($output) {
+            if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+                #Windows machine, do nothing
+            } else {
+                $load = sys_getloadavg();
+                echo '<!-- Server load: Last minute: '.$load[0].', Last 5 minutes: '.$load[1].', Last 15 minutes: '.$load[2]."-->\n";
+            }
+            
             echo "<!-- Page powered my M9 CMS by DBZ Technology -->\n";
-            echo '<!-- Server load: Last minute: '.$load[0].', Last 5 minutes: '.$load[1].', Last 15 minutes: '.$load[2]."-->\n";
         }
     }
     
