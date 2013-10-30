@@ -5,6 +5,8 @@
         <link rel="stylesheet" href="styles.css" />
         <script src="/M9/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="scripts.js"></script>
+        <link rel="shortcut icon" href="/M9/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/M9/favicon.ico" type="image/x-icon">
         <title>M9 Login</title>
     </head>
     <body style="background-color: #eee;">
