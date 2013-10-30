@@ -2,12 +2,31 @@
 #M9 Classes
 class M9
 {
+    static protected $time = NULL;
+    
+    public static function start($input = true) {
+        M9::info($input);
+    }
+    
     public static function data($name) {
         echo data::getData($name);
     }
     
     public static function devmode($page) {
         devmode::enable($page);
+    }
+    
+    public static function info($output) {
+        M9::$time = microtime(true);
+        $load = sys_getloadavg();
+        if ($output) {
+            echo "<!-- Page powered my M9 CMS by DBZ Technology -->\n";
+            echo '<!-- Server load: Last minute: '.$load[0].', Last 5 minutes: '.$load[1].', Last 15 minutes: '.$load[2]."-->\n";
+        }
+    }
+    
+    public static function loadtime() {
+        echo "\n<!-- Page generation time: ".(microtime(true) - M9::$time)."s-->";
     }
     
     public static function authorization($groups) {

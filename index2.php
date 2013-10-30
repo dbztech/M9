@@ -1,4 +1,4 @@
-<?php include('M9/M9.php'); ?>
+<?php include('M9/M9.php'); M9::start(); ?>
 <!doctype html>
 <html>
     <head></head>
@@ -19,3 +19,4 @@
             expetendis.</p>
     </body>
 </html>
+<?php M9::loadtime(); ?>

@@ -1,4 +1,4 @@
-<?php include('M9/M9.php'); M9::devmode('index2.php'); ?>
+<?php include('M9/M9.php'); M9::devmode('index2.php'); M9::start(); ?>
 <!doctype html>
 <html>
     <head></head>
@@ -8,3 +8,4 @@
         <?php M9::data('demotitle'); ?>
     </body>
 </html>
+<?php M9::loadtime(); ?>

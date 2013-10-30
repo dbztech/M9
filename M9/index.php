@@ -1,5 +1,6 @@
 <?php
 include('M9.php');
+M9::start(false);
 
 $login = false;
 $postrec = false;
@@ -44,5 +45,5 @@ if ($login) {
         include('Login.php');
     }
 }
-
+M9::loadtime();
 ?>
