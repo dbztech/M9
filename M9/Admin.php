@@ -51,6 +51,7 @@
             </div>
         </div>
         <div id="content">
+            <img src="/M9/Resources/Images/dbzbadge.svg" alt="Designed by DBZ Technology" class="dbzbadge" />
             <a class="btn btn-info back" id="Back" onclick="Interface.popPanel();"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
             <h1>M9 Admin Panel</h1>
             <hr />

@@ -13,6 +13,13 @@ table {
     margin: auto;
 }
 
+.dbzbadge {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    border-radius: 5px;
+}
+
 .table {
     width: auto;
 }
