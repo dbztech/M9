@@ -8,7 +8,7 @@
         <title>Login Error!</title>
     </head>
     <body style="background-color: #eee;">
-        <div class="hero-unit">
+        <div class="jumbotron">
             <h1>Whoops!</h1>
             <h2>It seems that your username or password is incorrect</h2>
             <a href="/M9" class="btn btn-large btn-warning">Try Again</a>

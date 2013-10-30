@@ -14,7 +14,7 @@
     <body onload="Core.load();">
         <div id="nav">
             <img alt="Profile Pic" src="http://www.gravatar.com/avatar/<?php echo user::getGravatar(); ?>?s=400" class="profilepic img-circle" />
-            <input type="button" value="Logout" class="btn" onclick="window.location = '/M9/Logout.php'" />
+            <input type="button" value="Logout" class="btn btn-default" onclick="window.location = '/M9/Logout.php'" />
         </div>
         <div id="subnavcontainer">
             <div class="subnav" id="ChangeDataNav">
@@ -49,7 +49,7 @@
             </div>
         </div>
         <div id="content">
-            <a class="btn btn-info back" id="Back" onclick="Interface.popPanel();"><i class="icon-chevron-left"></i> Back</a>
+            <a class="btn btn-info back" id="Back" onclick="Interface.popPanel();"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
             <h1>M9 Admin Panel</h1>
             <hr />
             <?php

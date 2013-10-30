@@ -1,11 +1,13 @@
 <h2>Create Users</h2>
 <form action="Process.php" method="post">
-    <input type="hidden" name="query" value="CreateUser" /><br />
-    <input type="email" placeholder="Email" name="username" required /><br />
-    <input type="password" placeholder="Password" name="password" required /><br />
-    <select name="type">
-        <option value="admin">Admin</option>
-        <option value="standard">Standard</option>
-    </select><br />
-    <input type="submit" class="btn btn-success" value="Create User" />
+    <div class="form-group">
+        <input type="hidden" name="query" value="CreateUser" />
+        <input type="email" placeholder="Email" name="username" class="form-control" required />
+        <input type="password" placeholder="Password" name="password" class="form-control" required />
+        <select name="type" class="form-control">
+            <option value="admin">Admin</option>
+            <option value="standard">Standard</option>
+        </select><br />
+        <input type="submit" class="btn btn-success" value="Create User" />
+    </div>
 </form>

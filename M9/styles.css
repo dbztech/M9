@@ -59,9 +59,18 @@ table {
     display: none;
 }
 
-.hero-unit {
+.jumbotron {
     background: none;
     color: white;
+}
+
+.form-group {
+    width: 265px;
+    margin: auto;
+}
+
+input {
+    margin-bottom: 5px;
 }
 
 #nav {

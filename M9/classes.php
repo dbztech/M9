@@ -266,9 +266,9 @@ class user
         echo '<th>Username</th><th>Password</th><th>User Type</th><th>Groups</th><th>Gravatar</th><th>Logout User</th>';
         foreach ($userdata as $data) {
             echo '<tr>';
-            echo '<td><input type="button" class="btn" value="'.$data['username'].'" onClick="User.username('.$data['id'].')" /></td>';
-            echo '<td><input type="button" class="btn" value="Change Password" onClick="User.password('.$data['id'].')" /></td>';
-            echo '<td><input type="button" class="btn" value="'.$data['type'].'" onClick="User.type('.$data['id'].')" /></td>';
+            echo '<td><input type="button" class="btn btn-default" value="'.$data['username'].'" onClick="User.username('.$data['id'].')" /></td>';
+            echo '<td><input type="button" class="btn btn-default" value="Change Password" onClick="User.password('.$data['id'].')" /></td>';
+            echo '<td><input type="button" class="btn btn-default" value="'.$data['type'].'" onClick="User.type('.$data['id'].')" /></td>';
             echo '<td>';
             echo groups::getUser($data['id']);
             echo '</td>';
@@ -303,7 +303,7 @@ class data
         echo '<th>Tag</th><th>Data</th><th>Data Modified</th>';
         foreach ($listdata as $data) {
             echo '<tr>';
-            echo '<td><input type="button" class="btn" value="'.$data['tag'].'" onClick="Data.tag('.$data['id'].')" /></td>';
+            echo '<td><input type="button" class="btn btn-default" value="'.$data['tag'].'" onClick="Data.tag('.$data['id'].')" /></td>';
             echo '<td id="'.$data['id'].'">'.$data['data'].'</td>';
             echo '<td>'.$data['timestamp'].'</td>';
             echo '<td><input type="button" class="btn btn-primary" value="Edit" onClick="Data.edit('.$data['id'].')" /></td>';
@@ -403,10 +403,10 @@ class groups
         $input = groups::get($user);
         foreach ($input as $group) {
             if ($group != "") {
-                echo '<input type="button" class="btn" value="#'.$group.'" onClick="" />';
+                echo '<input type="button" class="btn btn-default" value="#'.$group.'" onClick="" />';
                 echo "<br />";
             } else {
-                echo '<input type="button" class="btn" value="#nothing" onClick="" disabled />';
+                echo '<input type="button" class="btn btn-default" value="#nothing" onClick="" disabled />';
                 echo "<br />";
             }
         }
