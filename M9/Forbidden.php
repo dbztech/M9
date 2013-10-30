@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="styles.css" />
         <script src="/M9/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="scripts.js"></script>
+        <title>Login Error!</title>
     </head>
     <body style="background-color: #eee;">
         <div class="hero-unit">

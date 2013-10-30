@@ -1,7 +1,9 @@
 <?php include('M9.php');?>
 <!doctype html>
 <html>
-    <head></head>
+    <head>
+        <title>M9 Password Hash Generator</title>
+    </head>
     <body>
         <h1>M9 Password Creation Tool</h1>
         <form method="post" action="Password.php">
