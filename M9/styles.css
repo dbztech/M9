@@ -25,6 +25,16 @@ table {
     text-align: center;
 }
 
+.subnav p {
+    color: white;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    white-space: nowrap;
+    font-size: 33px;
+    margin-top: 32px;
+}
+
 .subnav {
     float: left;
     height: 100%;
