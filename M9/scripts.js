@@ -135,6 +135,8 @@ function user() {
     
     this.removeGroup = function(user, group) {
         document.getElementById('removeGroupModalBody').innerHTML = "Are you sure you want to <b>remove</b> group <b>#"+group+"</b> from this user";
+        document.getElementById('removeGroupUser').value = user;
+        document.getElementById('removeGroupGroup').value = group;
         $('#removeGroupModal').modal('show');
     }
 }

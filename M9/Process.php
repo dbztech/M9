@@ -20,6 +20,8 @@ if (count($_POST) > 0) {
                     user::changePassword($_POST['UserId'], $_POST['old'], $_POST['new'], $_POST['repeat']);
                 } elseif ($_POST['query'] == "ChangeType") {
                     user::changeType($_POST['UserId'], $_POST['new']);
+                } elseif ($_POST['query'] == "RemoveGroup") {
+                    groups::removeGroup($_POST['UserId'], $_POST['group']);
                 }
             }
             

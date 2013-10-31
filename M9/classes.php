@@ -415,6 +415,21 @@ class groups
     }
     
     public static function set($user, $groups) {
+        $imploded = implode("|", $groups);
+        database::preparedInsert("UPDATE  `m9`.`users` SET  `groups` =  ? WHERE  `users`.`id` = ?", array($imploded, $user));
+    }
+    
+    public static function removeGroup($user, $grouptoremove) {
+        $current = groups::get($user);
+        $i = 0;
+        foreach($current as $value) {
+            if ($value == $grouptoremove) {
+                unset($current[$i]);
+            }
+            $i++;
+        }
+        $new = array_values($current);
+        groups::set($user, $new);
     }
     
 }

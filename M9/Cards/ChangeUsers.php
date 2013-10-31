@@ -12,8 +12,13 @@
         Are you sure you want to remove group X from Y
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger">Remove Group</button>
+        <form action="Process.php" method="post">
+            <input type="hidden" name="query" value="RemoveGroup" />
+            <input type="hidden" name="UserId" id="removeGroupUser" value="" />
+            <input type="hidden" name="group" id="removeGroupGroup" value="" />
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-danger" value="Remove Group" />
+        </form>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

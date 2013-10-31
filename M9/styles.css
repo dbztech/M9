@@ -20,6 +20,10 @@ table {
     border-radius: 5px;
 }
 
+.btn {
+    margin: 5px;
+}
+
 .table {
     width: auto;
 }
