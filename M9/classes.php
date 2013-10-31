@@ -68,12 +68,12 @@ class M9
     
     public static function addframework($frameworkname) {
         if ($frameworkname == "Bootstrap") {
-            echo '<link href="/M9/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">';
-            echo '<script src="/M9/bootstrap/js/bootstrap.min.js"></script>';
+            echo '<link href="/M9/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">'."\n";
+            echo '<script src="/M9/bootstrap/js/bootstrap.min.js"></script>'."\n";
         } else if ($frameworkname == "jQuery") {
-            echo '<script src="https://code.jquery.com/jquery.js"></script>';
+            echo '<script src="/M9/jquery/jquery.min.js"></script>'."\n";
         } else if ($frameworkname == "TinyMCE") {
-            echo '<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>';
+            echo '<script src="/M9/tinymce/tinymce.min.js"></script>'."\n";
         }
     }
 }
