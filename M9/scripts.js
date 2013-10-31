@@ -132,6 +132,11 @@ function user() {
     this.create = function(id) {
         Interface.modalPanel("CreateUsersNav", "CreateUsers", "homeviews");
     }
+    
+    this.removeGroup = function(user, group) {
+        document.getElementById('removeGroupModalBody').innerHTML = "Are you sure you want to <b>remove</b> group <b>#"+group+"</b> from this user";
+        $('#removeGroupModal').modal('show');
+    }
 }
 
 User = new user;

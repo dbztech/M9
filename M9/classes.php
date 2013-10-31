@@ -403,7 +403,7 @@ class groups
         $input = groups::get($user);
         foreach ($input as $group) {
             if ($group != "") {
-                echo '<input type="button" class="btn btn-default" value="#'.$group.'" onClick="" />';
+                echo '<input type="button" class="btn btn-default" value="#'.$group.'" onClick="User.removeGroup('."'".$user."','".$group."'".');" />';
                 echo "<br />";
             } else {
                 echo '<input type="button" class="btn btn-default" value="#nothing" onClick="" disabled />';
