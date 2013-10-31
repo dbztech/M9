@@ -106,38 +106,6 @@ input {
     color: white;
 }
 
-#ChangeUsers {
-    display: none;
-}
-
-#CreateUsers {
-    display: none;
-}
-
-#ChangeUsername {
-    display: none;
-}
-
-#ChangeUserPassword {
-    display: none;
-}
-
-#ChangeUserType {
-    display: none;
-}
-
-#ChangeData {
-    display: none;
-}
-
-#CreateData {
-    display: none;
-}
-
-#ChangeDataTag {
-    display: none;
-}
-
-#ChangeDataContent {
+#ChangeUsers, #CreateUsers, #ChangeUsername, #ChangeUserPassword, #ChangeUserType, #ChangeData, #CreateData, #ChangeDataTag, #ChangeDataContent, #AddGroup {
     display: none;
 }

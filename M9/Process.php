@@ -22,6 +22,8 @@ if (count($_POST) > 0) {
                     user::changeType($_POST['UserId'], $_POST['new']);
                 } elseif ($_POST['query'] == "RemoveGroup") {
                     groups::removeGroup($_POST['UserId'], $_POST['group']);
+                } elseif ($_POST['query'] == "AddGroup") {
+                    groups::addGroup($_POST['UserId'], $_POST['group']);
                 }
             }
             

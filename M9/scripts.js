@@ -133,6 +133,11 @@ function user() {
         Interface.modalPanel("CreateUsersNav", "CreateUsers", "homeviews");
     }
     
+    this.addGroup = function(user) {
+        document.getElementById('addGroupUser').value = user;
+        Interface.modalPanel("AddGroupNav", "AddGroup", "ChangeUsers");
+    }
+    
     this.removeGroup = function(user, group) {
         document.getElementById('removeGroupModalBody').innerHTML = "Are you sure you want to <b>remove</b> group <b>#"+group+"</b> from this user";
         document.getElementById('removeGroupUser').value = user;

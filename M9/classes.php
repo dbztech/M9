@@ -363,7 +363,7 @@ class cards
     public static function adminPanel() {
         $type = user::getUserType();
         if ($type == "admin") {
-            $cards = Array('Data', 'ChangeData', 'CreateData', 'ChangeDataContent', 'ChangeDataTag', 'Users', 'ChangeUsers', 'CreateUsers', 'ChangeUsername', 'ChangeUserPassword', 'ChangeUserType');
+            $cards = Array('Data', 'ChangeData', 'CreateData', 'ChangeDataContent', 'ChangeDataTag', 'Users', 'ChangeUsers', 'CreateUsers', 'ChangeUsername', 'ChangeUserPassword', 'ChangeUserType', 'AddGroup');
         } elseif ($type == "standard") {
             $cards = Array('Data', 'ChangeData', 'CreateData', 'ChangeDataContent', 'ChangeDataTag');
         }
@@ -411,7 +411,7 @@ class groups
             }
         }
         echo "<br />";
-        echo '<input type="button" class="btn btn-success" value="Add Group" onClick="" />';
+        echo '<input type="button" class="btn btn-success" value="Add Group" onClick="User.addGroup('.$user.')" />';
     }
     
     public static function set($user, $groups) {
@@ -428,6 +428,13 @@ class groups
             }
             $i++;
         }
+        $new = array_values($current);
+        groups::set($user, $new);
+    }
+    
+    public static function addGroup($user, $grouptoadd) {
+        $current = groups::get($user);
+        array_push($current, $grouptoadd);
         $new = array_values($current);
         groups::set($user, $new);
     }
