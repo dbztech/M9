@@ -204,20 +204,20 @@ class user
 {
     public static function logout() {
         $user = $_COOKIE['username'];
-        database::preparedInsert("UPDATE  `m9`.`users` SET  `clientid` =  NULL WHERE  `users`.`username` = ?", array($user));
+        database::preparedInsert("UPDATE  `users` SET  `clientid` =  NULL WHERE  `users`.`username` = ?", array($user));
         setcookie('username', '');
         setcookie('clientid', '');
         header('Location: /M9/');
     }
     
     public static function logoutSpecific($user) {
-        database::preparedInsert("UPDATE  `m9`.`users` SET  `clientid` =  NULL WHERE  `users`.`id` = ?", array($user));
+        database::preparedInsert("UPDATE  `users` SET  `clientid` =  NULL WHERE  `users`.`id` = ?", array($user));
         setcookie('username', '');
         setcookie('clientid', '');
     }
     
     public static function delete($user) {
-        database::preparedInsert("DELETE FROM `m9`.`users` WHERE `users`.`id` = ?", array($user));
+        database::preparedInsert("DELETE FROM `users` WHERE `users`.`id` = ?", array($user));
     }
     
     public static function create($username, $password, $type, $groups, $gravatar) {
@@ -225,7 +225,7 @@ class user
             #echo "User exists";
         } else {
             #echo "Inserted";
-            database::preparedInsert("INSERT INTO `m9`.`users` (`username`, `password`, `clientid`, `type`, `groups`, `gravatar`, `id`) VALUES (?, ?, NULL, ?, NULL, ?, NULL);", array($username, hash('sha256', $password), $type, md5(strtolower(trim($username)))));
+            database::preparedInsert("INSERT INTO `users` (`username`, `password`, `clientid`, `type`, `groups`, `gravatar`, `id`) VALUES (?, ?, NULL, ?, NULL, ?, NULL);", array($username, hash('sha256', $password), $type, md5(strtolower(trim($username)))));
         }
     }
     
@@ -234,8 +234,8 @@ class user
             #echo "User exists";
         } else {
             #echo "Inserted";
-            database::preparedInsert("UPDATE  `m9`.`users` SET  `username` = ? WHERE  `users`.`id` = ?", array($username, $user));
-            database::preparedInsert("UPDATE  `m9`.`users` SET  `gravatar` = ? WHERE  `users`.`id` = ?", array(md5(strtolower(trim($username))), $user));
+            database::preparedInsert("UPDATE  `users` SET  `username` = ? WHERE  `users`.`id` = ?", array($username, $user));
+            database::preparedInsert("UPDATE  `users` SET  `gravatar` = ? WHERE  `users`.`id` = ?", array(md5(strtolower(trim($username))), $user));
         }
     }
     
@@ -243,13 +243,13 @@ class user
         $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `id` = ?', array($user));
         $userdata = $userdata[0];
         if ($new == $repeat) {
-            database::preparedInsert("UPDATE  `m9`.`users` SET  `password` = ? WHERE  `users`.`id` = ?", array(hash('sha256', $new), $user));
-            database::preparedInsert("UPDATE  `m9`.`users` SET  `clientid` =  NULL WHERE  `users`.`id` = ?", array($user));
+            database::preparedInsert("UPDATE  `users` SET  `password` = ? WHERE  `users`.`id` = ?", array(hash('sha256', $new), $user));
+            database::preparedInsert("UPDATE  `users` SET  `clientid` =  NULL WHERE  `users`.`id` = ?", array($user));
         }
     }
     
     public static function changeType($user, $type) {
-        database::preparedInsert("UPDATE  `m9`.`users` SET  `type` = ? WHERE  `users`.`id` = ?", array($type, $user));
+        database::preparedInsert("UPDATE  `users` SET  `type` = ? WHERE  `users`.`id` = ?", array($type, $user));
     }
     
     public static function getUserType() {
@@ -315,7 +315,7 @@ class data
     
     public static function createData($tag, $data) {
         $sql = "INSERT INTO `m9`.`data` (`tag`, `data`, `timestamp`, `id`) VALUES (?, ?, CURRENT_TIMESTAMP, NULL);";
-        if (database::preparedSelect("SELECT * FROM `m9`.`data` WHERE `users`.`tag` = ?", array($tag))) {
+        if (database::preparedSelect("SELECT * FROM `data` WHERE `users`.`tag` = ?", array($tag))) {
             #echo "Tag exists";
         } else {
             #echo "Inserted";
@@ -324,20 +324,20 @@ class data
     }
     
     public static function changeTag($id, $new) {
-        if (database::preparedSelect("SELECT * FROM `m9`.`data` WHERE `data`.`tag` = ?", array($tag))) {
+        if (database::preparedSelect("SELECT * FROM `data` WHERE `data`.`tag` = ?", array($tag))) {
             #echo "Tag exists";
         } else {
             #echo "Inserted";
-            database::preparedInsert("UPDATE  `m9`.`data` SET  `tag` =  ? WHERE  `data`.`id` = ?", array($new, $id));
+            database::preparedInsert("UPDATE  `data` SET  `tag` =  ? WHERE  `data`.`id` = ?", array($new, $id));
         }
     }
     
     public static function changeData($id, $new) {
-        database::preparedInsert("UPDATE  `m9`.`data` SET  `data` =  ? WHERE  `data`.`id` = ?", array($new, $id));
+        database::preparedInsert("UPDATE  `data` SET  `data` =  ? WHERE  `data`.`id` = ?", array($new, $id));
     }
     
     public static function delete($tag) {
-        database::preparedInsert("DELETE FROM `m9`.`data` WHERE `data`.`id` = ?", array($tag));
+        database::preparedInsert("DELETE FROM `data` WHERE `data`.`id` = ?", array($tag));
     }
 }
 
