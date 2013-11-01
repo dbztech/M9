@@ -125,8 +125,8 @@ class database
     		$dbh = new PDO('mysql:host='.database::$dbhost.';dbname='.database::$database, database::$dbuser, database::$dbpassword);
     	}
     	catch (PDOException $e) {
-			print ("Could not connect to server.n");
-			die ("getMessage(): " . $e->getMessage () . "n");
+			print ("Could not connect to server. \n");
+			die ("getMessage(): " . $e->getMessage () . "\n");
 		}
         #$dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         #$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
