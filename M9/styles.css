@@ -1,7 +1,7 @@
 /* M9 CSS Document */
 
 html, body {
-    background: url(Resources/Images/background.jpg);
+    background: #8ccede url(Resources/Images/background.jpg) no-repeat;
     background-size: cover;
     width: 100%;
     height: 100%;

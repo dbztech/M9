@@ -434,8 +434,13 @@ class groups
     
     public static function addGroup($user, $grouptoadd) {
         $current = groups::get($user);
-        array_push($current, $grouptoadd);
-        $new = array_values($current);
+        if ($current[0] == "") {
+            $current[0] = $grouptoadd;
+        } else {
+            array_push($current, $grouptoadd);
+        }
+        
+        $new = $current;
         groups::set($user, $new);
     }
     
