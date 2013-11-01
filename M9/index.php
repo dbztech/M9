@@ -15,7 +15,7 @@ if (count($_POST) > 0) {
     if ($username == $userdata['username'] && hash('sha256', $password) == $userdata['password'] && $userdata != '') {
         setcookie("username", $username, time()+10000, "/");
         $random = hash('sha256', rand());
-        database::preparedInsert("UPDATE  `m9`.`users` SET  `clientid` =  ? WHERE  `users`.`id` = ?", array($random, $userdata['id']));
+        database::preparedInsert("UPDATE  `users` SET  `clientid` =  ? WHERE  `users`.`id` = ?", array($random, $userdata['id']));
         setcookie("clientid", $random, time()+10000, "/");
         header('Location: /M9/');
         $login = true;

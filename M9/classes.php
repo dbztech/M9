@@ -314,7 +314,7 @@ class data
     }
     
     public static function createData($tag, $data) {
-        $sql = "INSERT INTO `m9`.`data` (`tag`, `data`, `timestamp`, `id`) VALUES (?, ?, CURRENT_TIMESTAMP, NULL);";
+        $sql = "INSERT INTO `data` (`tag`, `data`, `timestamp`, `id`) VALUES (?, ?, CURRENT_TIMESTAMP, NULL);";
         if (database::preparedSelect("SELECT * FROM `data` WHERE `users`.`tag` = ?", array($tag))) {
             #echo "Tag exists";
         } else {
@@ -416,7 +416,7 @@ class groups
     
     public static function set($user, $groups) {
         $imploded = implode("|", $groups);
-        database::preparedInsert("UPDATE  `m9`.`users` SET  `groups` =  ? WHERE  `users`.`id` = ?", array($imploded, $user));
+        database::preparedInsert("UPDATE  `users` SET  `groups` =  ? WHERE  `users`.`id` = ?", array($imploded, $user));
     }
     
     public static function removeGroup($user, $grouptoremove) {
