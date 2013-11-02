@@ -120,13 +120,18 @@ class database
     	return $result;
     }
     
-    public static function sqlconn() {	
+    public static function sqlconn($verbose = true) {	
 		try {
     		$dbh = new PDO('mysql:host='.database::$dbhost.';dbname='.database::$database, database::$dbuser, database::$dbpassword);
     	}
     	catch (PDOException $e) {
-			print ("Could not connect to server. \n");
-			die ("getMessage(): " . $e->getMessage () . "\n");
+            if ($verbose) {
+                print ("Could not connect to server. \n");
+                die ("getMessage(): " . $e->getMessage () . "\n");
+            } else {
+                include('DatabaseError.php');
+                die();
+            }
 		}
         #$dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         #$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -142,9 +147,9 @@ class database
     }
 
     public static function test() {
-    	$dbh = database::sqlconn();
+    	$dbh = database::sqlconn(false);
     	if ($dbh) {
-            echo "Connection Successful!";
+            #echo "Connection Successful!";
     		return true;
     		$dbh = NULL;
     	}
@@ -220,7 +225,7 @@ class user
         database::preparedInsert("DELETE FROM `users` WHERE `users`.`id` = ?", array($user));
     }
     
-    public static function create($username, $password, $type, $groups, $gravatar) {
+    public static function create($username, $password, $type) {
         if (database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($username))) {
             #echo "User exists";
         } else {

@@ -7,13 +7,13 @@
         <script type="text/javascript" src="/M9/scripts.js"></script>
         <link rel="shortcut icon" href="/M9/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/M9/favicon.ico" type="image/x-icon">
-        <title>Login Error!</title>
+        <title>Database Error!</title>
     </head>
     <body style="background-color: #eee;">
         <div class="jumbotron">
             <h1>Whoops!</h1>
-            <h2>It seems that your username or password is incorrect</h2>
-            <a href="/M9" class="btn btn-large btn-warning">Try Again</a>
+            <h2>There seems to be an issue with the database. Please login again</h2>
+            <a href="/M9/Setup" class="btn btn-large btn-warning">Try Again</a>
         </div>
     </body>
 </html>

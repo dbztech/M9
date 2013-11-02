@@ -13,7 +13,7 @@ if (count($_POST) > 0) {
             
             if ($userdata['type'] == "admin") {
                 if ($_POST['query'] == "CreateUser") {
-                    user::create($_POST['username'], $_POST['password'], $_POST['type'], NULL, NULL);
+                    user::create($_POST['username'], $_POST['password'], $_POST['type']);
                 } elseif ($_POST['query'] == "ChangeUsername") {
                     user::changeUsername($_POST['UserId'], $_POST['new']);
                 } elseif ($_POST['query'] == "ChangePassword") {
