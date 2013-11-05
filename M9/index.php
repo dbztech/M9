@@ -1,4 +1,5 @@
 <?php
+#This file handled login information and load admin panel
 include('M9.php');
 M9::start(false);
 
