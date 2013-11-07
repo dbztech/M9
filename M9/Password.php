@@ -4,6 +4,7 @@
 <!doctype html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>M9 Password Hash Generator</title>
     </head>
     <body>

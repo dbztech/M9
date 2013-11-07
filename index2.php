@@ -5,7 +5,7 @@
     <body>
         <h1>Welcome to M9!</h1>
         <h2>Put your website here</h2>
-        <?php M9::data('trialcontent'); ?>
+        <?php M9::data('splatcontent'); ?>
         <p>Summis fabulas o eiusmod. Nisi e quamquam qui eram. Ipsum firmissimum excepteur 
             sunt laborum, culpa excepteur in exercitation aut do do transferrem, illum qui 
             appellat. Iudicem sed minim ab iis o adipisicing. Fabulas varias ita mandaremus 
