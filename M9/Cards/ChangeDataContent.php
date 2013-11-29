@@ -1,6 +1,6 @@
 <form id="ChangeDataForm" action="Process.php" onsubmit="document.getElementById('ChangeDataHidden').value = tinyMCE.get('ChangeDataText').getContent({format : 'raw'});" method="post" style="width: 80%; margin: auto;">
     <div class="form-group" style="width: 100%;">
-    <script>tinymce.init({selector:'textarea#ChangeDataText', plugins: "code"});</script>
+    <script>tinymce.init({selector:'textarea#ChangeDataText', plugins: "code", height: 400});</script>
         <h3>Change Data</h3>
         <input type="hidden" name="query" value="ChangeData" />
         <input type="hidden" name="DataId" value="" id="ChangeDataId" />
