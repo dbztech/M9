@@ -27,6 +27,7 @@
             <form method="post" action="Process.php" target="_blank">
                 <h2><b>2. Enter Database Information</b></h2>
                 <div class="form-group">
+                    <input type="text" placeholder="Database Host" class="form-control" name="dbhost" autocomplete="off" required />
                     <input type="text" placeholder="Database Name" class="form-control" name="dbname" autocomplete="off" required />
                     <input type="text" placeholder="Database User" class="form-control" name="dbusername" autocomplete="off" required />
                     <input type="password" placeholder="Database Password" class="form-control" name="dbpassword" autocomplete="off" required />
