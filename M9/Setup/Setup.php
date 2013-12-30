@@ -39,7 +39,7 @@
                     <input type="submit" class="btn btn-primary" onclick="Core.showId('continueButton');" value="Setup M9" />
                 </div>
             </form>
-            <input type="button" value="Continue..." id="continueButton" onclick="window.location = '/M9/Setup/Finalize';" class="btn btn-success" style="display: none; margin: auto;" />
+            <input type="button" value="Continue..." id="continueButton" onclick="window.location = '/M9/Setup/Finalize.php';" class="btn btn-success" style="display: none; margin: auto;" />
         </div>
     </body>
 </html>
