@@ -22,7 +22,7 @@
                 <li>Create a database for M9 to use</li>
                 <li>Create a user with <b>NO</b> global permissions</li>
                 <li>Grand this user database specific permission to the M9 database</li>
-                <li>Enter the username and database info bellow</li>
+                <li>Enter the username and database info below</li>
             </ol>
             <form method="post" action="Process.php" target="_blank">
                 <h2><b>2. Enter Database Information</b></h2>
