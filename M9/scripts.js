@@ -2,11 +2,22 @@
 
 function core() {
     this.showId = function(id) {
-        document.getElementById(id).style.display = "block";
+        try {
+           document.getElementById(id).style.display = "block";
+        }
+        catch (e) {
+           // statements to handle any exceptions
+        }
     }
     
     this.hideId = function(id) {
-        document.getElementById(id).style.display = "none";
+        try {
+           document.getElementById(id).style.display = "none";
+        }
+        catch (e) {
+           // statements to handle any exceptions
+        }
+        
     }
     
     this.showViews = function(element, index, array) {
