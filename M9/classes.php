@@ -26,7 +26,7 @@ class M9
                 echo '<!-- Server load: Last minute: '.$load[0].', Last 5 minutes: '.$load[1].', Last 15 minutes: '.$load[2]."-->\n";
             }
             
-            echo "<!-- Page powered my M9 CMS by DBZ Technology -->\n";
+            echo "<!-- Page powered by M9 CMS a DBZ Technology Product -->\n";
         }
     }
     
