@@ -48,6 +48,13 @@ blockquote {
 
 .table {
     width: auto;
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px;
+}
+
+.usertable {
+    width: 300px;
 }
 
 .table th {

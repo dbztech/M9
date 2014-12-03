@@ -61,22 +61,32 @@ class user
     public static function userList() {
         $userdata = database::select("SELECT * FROM  `users` WHERE 1");
         echo '<input type="hidden" name="clientid" value="'.$_COOKIE['clientid'].'" />';
-        echo '<table class="table table-bordered">';
-        echo '<th>Username</th><th>Password</th><th>User Type</th><th>Groups</th><th>Gravatar</th><th>Logout User</th>';
         foreach ($userdata as $data) {
+            echo '<table class="table table-bordered usertable">';
+            
             echo '<tr>';
-            echo '<td><input type="button" class="btn btn-default" value="'.$data['username'].'" onClick="User.username('.$data['id'].')" /></td>';
-            echo '<td><input type="button" class="btn btn-default" value="Change Password" onClick="User.password('.$data['id'].')" /></td>';
+            echo '<td><img alt="Gravatar" class="img-circle" src="http://www.gravatar.com/avatar/'.$data['gravatar'].'" /> <br />';
+            echo '<input type="button" class="btn btn-default" value="'.$data['username'].'" onClick="User.username('.$data['id'].')" />';
+            echo '<input type="button" class="btn btn-default" value="Change Password" onClick="User.password('.$data['id'].')" /></td>';
+            echo '</tr>';
+            
+            echo '<tr>';
             echo '<td><input type="button" class="btn btn-default" value="'.$data['type'].'" onClick="User.type('.$data['id'].')" /></td>';
+            echo '</tr>';
+            
+            echo '<tr>';
             echo '<td>';
             echo groups::getUser($data['id']);
             echo '</td>';
-            echo '<td><img alt="Gravatar" class="img-circle" src="http://www.gravatar.com/avatar/'.$data['gravatar'].'" /></td>';
-            echo '<td><input type="button" class="btn btn-warning" value="Logout User" onClick="User.logout('.$data['id'].')" /></td>';
-            echo '<td><input type="button" class="btn btn-danger" value="X" onClick="User.delete('.$data['id'].')" /></td>';
             echo '</tr>';
+            
+            echo '<tr>';
+            echo '<td><input type="button" class="btn btn-warning" value="Logout User" onClick="User.logout('.$data['id'].')" />';
+            echo '<input type="button" class="btn btn-danger" value="Delete User" onClick="User.delete('.$data['id'].')" /></td>';
+            echo '</tr>';
+            
+            echo '</table>';
         }
-        echo '</table>';
     }
     
     public static function getGravatar() {
