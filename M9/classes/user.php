@@ -66,7 +66,7 @@ class user
             
             echo '<tr>';
             echo '<td><img alt="Gravatar" class="img-circle" src="http://www.gravatar.com/avatar/'.$data['gravatar'].'" /> <br />';
-            echo '<input type="button" class="btn btn-default" value="'.$data['username'].'" onClick="User.username('.$data['id'].')" />';
+            echo '<input type="button" class="btn btn-default" value="'.$data['username'].'" onClick="User.username('.$data['id'].')" /> <br />';
             echo '<input type="button" class="btn btn-default" value="Change Password" onClick="User.password('.$data['id'].')" /></td>';
             echo '</tr>';
             
