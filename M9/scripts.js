@@ -88,7 +88,7 @@ function interface() {
     }
     
     this.showView = function(viewToShow) {
-        var allViews = ['Data', 'ChangeData', 'CreateData', 'ChangeDataContent', 'ChangeDataTag', 'Users', 'ChangeUsers', 'CreateUsers', 'ChangeUsername', 'ChangeUserPassword', 'ChangeUserType'];
+        var allViews = ['Data', 'ChangeData', 'CreateData', 'ChangeDataContent', 'ChangeDataTag', 'Users', 'ChangeUsers', 'CreateUsers', 'ChangeUsername', 'ChangeUserPassword', 'ChangeUserType', 'AddGroup'];
         
         allViews.forEach(Core.hideViews);
         
