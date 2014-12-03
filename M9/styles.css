@@ -1,11 +1,14 @@
 /* M9 CSS Document */
 
+@font-face {
+    font-family: Phosphate;
+    src: url(Resources/Fonts/Phosphate-Inline.woff);
+}
+
 html, body {
-    background: #32545C url(Resources/Images/background.jpg) no-repeat;
-    /*background-size: cover;*/
+    background: #000000 url('Resources/Images/Black.png');
     width: 100%;
     height: 100%;
-    margin: 0px;
     text-align: center;
 }
 
@@ -106,11 +109,47 @@ input {
 }
 
 #content {
-    float: right;
-    width: 90%;
     color: white;
+    margin: 25px 0px;
+    padding-bottom: 50px;
 }
 
 #ChangeUsers, #CreateUsers, #ChangeUsername, #ChangeUserPassword, #ChangeUserType, #ChangeData, #CreateData, #ChangeDataTag, #ChangeDataContent, #AddGroup {
     display: none;
+}
+
+#intro {
+    width: 100%;
+}
+
+#intro img {
+    width: 200px;
+    margin: 50px 0px;
+}
+
+.homeviews {
+    width: 100%;
+}
+
+#content h1 {
+    background: white;
+    color: black;
+    padding: 25px 0px;
+    margin: 0px;
+}
+
+.homeviews h2 {
+    background: yellow;
+    display: inline-block;
+    height: 200px;
+    width: 50%;
+    margin: 0px -2px;
+    color: black;
+    padding-top: 55px;
+    font-family: Phosphate;
+    vertical-align: middle;
+}
+
+.homeviews h2:hover {
+    opacity: .9;
 }
