@@ -28,6 +28,16 @@ blockquote {
     border-radius: 5px;
 }
 
+.nav {
+    position: fixed;
+    right: 5px;
+    top: 5px;
+    width: 300px;
+    height: 75px;
+    text-align: right;
+    z-index: 50;
+}
+
 .btn {
     margin: 5px;
     border-radius: 0px;
@@ -46,33 +56,6 @@ blockquote {
 
 .table td {
     text-align: center;
-}
-
-.subnav p {
-    color: white;
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    white-space: nowrap;
-    font-size: 33px;
-    margin-top: 32px;
-    font-style: italic;
-}
-
-.subnav {
-    float: left;
-    height: 100%;
-    width: 5%;
-    background: rgba(255, 166, 0, 0.7);
-    position: fixed;
-    left: 10%;
-    display: none;
-    color: white;
-}
-
-.navtwo {
-    left: 15%;
-    background: rgba(255, 0, 0, 0.7);
 }
 
 .back {
@@ -97,19 +80,10 @@ input {
     margin-bottom: 5px;
 }
 
-#nav {
-    float: left;
-    height: 100%;
-    width: 10%;
-    background: rgba(255, 255, 255, 0.3);
-    position: fixed;
-}
-
 .profilepic {
-    margin: 7%;
-    width: 77%;
+    margin: 5px;
+    width: 65px;
     background: white;
-    padding: 4%;
 }
 
 #content {
@@ -171,4 +145,8 @@ input {
 
 .img-circle {
     border: 3px solid white;
+}
+
+.jumbotron h1 {
+    font-family: Phosphate;
 }
