@@ -30,6 +30,10 @@ blockquote {
 
 .btn {
     margin: 5px;
+    border-radius: 0px;
+    background: none;
+    border: 3px solid;
+    color: red;
 }
 
 .table {
@@ -74,7 +78,7 @@ blockquote {
 .back {
     float: left;
     margin: 20px;
-    margin-right: -105px;
+    margin-right: -110px;
     padding-right: 20px;
     display: none;
 }
@@ -152,4 +156,19 @@ input {
 
 .homeviews h2:hover {
     opacity: .9;
+}
+
+.form-control {
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 0px;
+}
+
+.input-group-addon {
+    border-radius: 0px;
+}
+
+.img-circle {
+    border: 3px solid white;
 }

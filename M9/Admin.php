@@ -59,7 +59,7 @@
         <div id="content">
             <!--<img src="/M9/Resources/Images/dbzbadge.svg" alt="Designed by DBZ Technology" class="dbzbadge" />-->
             <a class="btn btn-info back" id="Back" onclick="Interface.popPanel();"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
-            <h1 class="lead">Welcome to the M9 content managment system by DBZ Technology</h1>
+            <h1 class="lead">Welcome to the M9 content managment system by <a href="http://dbztech.com" style="color: rgb(40, 182, 44);" target="_blank">DBZ Technology</a></h1>
             <?php
                 cards::adminPanel();
             ?>
