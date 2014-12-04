@@ -1,6 +1,6 @@
+<h1 class="lead">Add Group</h1>
 <form action="Process.php" method="post">
     <div class="form-group">
-        <h1 class="lead">Add Group</h1>
         <input type="hidden" name="query" value="AddGroup" />
         <input type="hidden" name="UserId" id="addGroupUser" value="" />
         <div class="input-group">

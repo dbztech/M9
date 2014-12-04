@@ -33,7 +33,7 @@ blockquote {
 }
 
 .nav {
-    position: absolute;
+    position: fixed;
     top: 0px;
     background: #FFFFFF url('Resources/Images/12.jpg');
     width: 100%;
