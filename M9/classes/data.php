@@ -10,18 +10,24 @@ class data
     public static function dataList() {
         $listdata = database::select("SELECT * FROM  `data` WHERE 1");
         echo '<input type="hidden" name="clientid" value="'.$_COOKIE['clientid'].'" />';
-        echo '<table class="table table-bordered">';
-        echo '<th>Tag</th><th>Data</th><th>Data Modified</th>';
+        
         foreach ($listdata as $data) {
-            echo '<tr>';
-            echo '<td><input type="button" class="btn btn-default" value="'.$data['tag'].'" onClick="Data.tag('.$data['id'].')" /></td>';
-            echo '<td id="'.$data['id'].'">'.$data['data'].'</td>';
-            echo '<td>'.$data['timestamp'].'</td>';
-            echo '<td><input type="button" class="btn btn-primary" value="Edit" onClick="Data.edit('.$data['id'].')" /></td>';
-            echo '<td><input type="button" value="X" class="btn btn-danger" onClick="Data.delete('.$data['id'].')" /></td>';
-            echo '</tr>';
+            echo '<table class="table table-bordered">';
+            
+            echo '<tr><td>';
+            echo '<input type="button" class="btn btn-default" value="'.$data['tag'].'" onClick="Data.tag('.$data['id'].')" /> <br />';
+            echo $data['timestamp'];
+            echo '</td></tr>';
+            
+            echo '<tr><td id="'.$data['id'].'">'.$data['data'].'</td></tr>';
+            
+            echo '<tr><td>';
+            echo '<input type="button" class="btn btn-primary" value="Edit Content" onClick="Data.edit('.$data['id'].')" /> <br />';
+            echo '<input type="button" value="Delete Tag" class="btn btn-danger" onClick="Data.delete('.$data['id'].')" />';
+            echo '</td></tr>';
+            echo '</table>';
         }
-        echo '</table>';
+        
     }
     
     public static function createData($tag, $data) {

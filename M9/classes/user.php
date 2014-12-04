@@ -62,28 +62,26 @@ class user
         $userdata = database::select("SELECT * FROM  `users` WHERE 1");
         echo '<input type="hidden" name="clientid" value="'.$_COOKIE['clientid'].'" />';
         foreach ($userdata as $data) {
-            echo '<table class="table table-bordered usertable">';
+            echo '<table class="table table-bordered">';
             
-            echo '<tr>';
-            echo '<td><img alt="Gravatar" class="img-circle" src="http://www.gravatar.com/avatar/'.$data['gravatar'].'" /> <br />';
+            echo '<tr><td>';
+            echo '<img alt="Gravatar" class="img-circle" src="http://www.gravatar.com/avatar/'.$data['gravatar'].'" /> <br />';
             echo '<input type="button" class="btn btn-default" value="'.$data['username'].'" onClick="User.username('.$data['id'].')" /> <br />';
-            echo '<input type="button" class="btn btn-default" value="Change Password" onClick="User.password('.$data['id'].')" /></td>';
-            echo '</tr>';
+            echo '<input type="button" class="btn btn-default" value="Change Password" onClick="User.password('.$data['id'].')" />';
+            echo '</td></tr>';
             
-            echo '<tr>';
-            echo '<td><input type="button" class="btn btn-default" value="'.$data['type'].'" onClick="User.type('.$data['id'].')" /></td>';
-            echo '</tr>';
+            echo '<tr><td>';
+            echo '<input type="button" class="btn btn-default" value="'.$data['type'].'" onClick="User.type('.$data['id'].')" />';
+            echo '</td></tr>';
             
-            echo '<tr>';
-            echo '<td>';
+            echo '<tr><td>';
             echo groups::getUser($data['id']);
-            echo '</td>';
-            echo '</tr>';
+            echo '</td></tr>';
             
-            echo '<tr>';
-            echo '<td><input type="button" class="btn btn-warning" value="Logout User" onClick="User.logout('.$data['id'].')" />';
-            echo '<input type="button" class="btn btn-danger" value="Delete User" onClick="User.delete('.$data['id'].')" /></td>';
-            echo '</tr>';
+            echo '<tr><td>';
+            echo '<input type="button" class="btn btn-warning" value="Logout User" onClick="User.logout('.$data['id'].')" />';
+            echo '<input type="button" class="btn btn-danger" value="Delete User" onClick="User.delete('.$data['id'].')" />';
+            echo '</td></tr>';
             
             echo '</table>';
         }
