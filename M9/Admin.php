@@ -3,7 +3,7 @@
 <!-- It will be included by index.php -->
 <html>
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <?php m9::addframework('jQuery'); ?>
         <?php m9::addframework('Bootstrap'); ?>
         <?php m9::addframework('TinyMCE'); ?>
