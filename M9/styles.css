@@ -101,6 +101,7 @@ input {
     color: white;
     margin: 25px 0px;
     padding-bottom: 50px;
+    background: #FFFFFF url('Resources/Images/20.jpg');
 }
 
 #ChangeUsers, #CreateUsers, #ChangeUsername, #ChangeUserPassword, #ChangeUserType, #ChangeData, #CreateData, #ChangeDataTag, #ChangeDataContent, #AddGroup {
@@ -161,6 +162,7 @@ input {
     color: white;
     padding: 25px 0px;
     margin: 0px;
+    margin-bottom: 30px;
 }
 
 .notice {

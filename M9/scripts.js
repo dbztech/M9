@@ -53,12 +53,6 @@ function interface() {
         Core.hideId(panelId);
     }
     
-    this.popPanel = function(panelToPop, viewToShow) {
-        Interface.removePanel(panelToPop);
-        
-        Interface.showView(viewToShow);
-    }
-    
     this.modalPanel = function(panelToModal, viewToShow, currentView) {
         Interface.lastView = currentView;
         Interface.currentPanel = panelToModal;
@@ -69,9 +63,11 @@ function interface() {
     }
     
     this.popPanel = function() {
+        
         Interface.removePanel(Interface.currentPanel);
         
         Interface.showView(Interface.lastView);
+        jQuery(".filltext").fitText();
     }
     
     this.showView = function(viewToShow) {
