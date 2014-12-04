@@ -32,5 +32,6 @@
               jQuery(".filltext").fitText();
             </script>
         </div>
+        <script src="validate.js"></script>
     </body>
 </html>

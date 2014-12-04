@@ -1,5 +1,5 @@
 <h1 class="lead">Change User Type</h1>
-<form action="Process.php" method="post">
+<form action="Process.php" method="post" class="validate-form">
     <div class="form-group">
         <input type="hidden" name="query" value="ChangeType" />
         <input type="hidden" name="UserId" id="ChangeTypeId" value="" />

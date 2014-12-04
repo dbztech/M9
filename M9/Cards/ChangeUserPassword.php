@@ -1,5 +1,5 @@
 <h1 class="lead">Change Password</h1>
-<form action="Process.php" method="post">
+<form action="Process.php" method="post" class="validate-form">
     <div class="form-group">
         <input type="hidden" name="query" value="ChangePassword" />
         <input type="hidden" name="UserId" id="ChangePasswordId" value="" />

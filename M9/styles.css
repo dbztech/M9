@@ -171,3 +171,11 @@ input {
     padding: 25px 0px;
     margin: 0px;
 }
+
+.invalid input:required:invalid {
+    border: 3px solid red;
+}
+
+.invalid input:required:valid {
+    border: 3px solid green;
+}
