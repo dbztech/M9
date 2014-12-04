@@ -16,6 +16,10 @@ table {
     margin: auto;
 }
 
+tbody {
+    border: 2px solid;
+}
+
 blockquote {
     width: 400px;
     margin: auto;
@@ -29,7 +33,7 @@ blockquote {
 }
 
 .nav {
-    position: fixed;
+    position: absolute;
     top: 0px;
     background: #FFFFFF url('Resources/Images/12.jpg');
     width: 100%;
@@ -117,13 +121,6 @@ input {
     width: 100%;
 }
 
-#content h1 {
-    background: white;
-    color: black;
-    padding: 25px 0px;
-    margin: 0px;
-}
-
 .homeviews h2 {
     background: yellow;
     display: inline-block;
@@ -157,4 +154,18 @@ input {
 
 .jumbotron h1 {
     font-family: Phosphate;
+}
+
+.card h1 {
+    background: #333;
+    color: white;
+    padding: 25px 0px;
+    margin: 0px;
+}
+
+.notice {
+    background: white;
+    color: black;
+    padding: 25px 0px;
+    margin: 0px;
 }

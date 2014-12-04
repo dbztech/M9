@@ -1,4 +1,4 @@
-<h2>Create User</h2>
+<h1 class="lead">Create User</h1>
 <form action="Process.php" method="post">
     <div class="form-group">
         <input type="hidden" name="query" value="CreateUser" />

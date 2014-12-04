@@ -24,7 +24,7 @@
                 <img alt="Profile Pic" src="http://www.gravatar.com/avatar/<?php echo user::getGravatar(); ?>?s=400" class="profilepic img-circle" />
             </div>
             <!--<img src="/M9/Resources/Images/dbzbadge.svg" alt="Designed by DBZ Technology" class="dbzbadge" />-->
-            <h1 class="lead">Welcome to the M9 content managment system by <a href="http://dbztech.com" style="color: rgb(40, 182, 44);" target="_blank">DBZ Technology</a></h1>
+            <h1 class="lead notice">Welcome to the M9 content managment system by <a href="http://dbztech.com" style="color: rgb(40, 182, 44);" target="_blank">DBZ Technology</a></h1>
             <?php
                 cards::adminPanel();
             ?>

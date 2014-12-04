@@ -1,2 +1,2 @@
-<h2>Manage Data</h2>
+<h1 class="lead">Manage Data</h1>
 <?php data::dataList(); ?>

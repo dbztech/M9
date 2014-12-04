@@ -1,4 +1,4 @@
-<h2>Manage Users</h2>
+<h1 class="lead">Manage Users</h1>
 <?php user::userList(); ?>
 <!-- Modal -->
 <div class="modal fade" id="removeGroupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="color: black;">
