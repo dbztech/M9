@@ -19,7 +19,7 @@ class data
             echo $data['timestamp'];
             echo '</td></tr>';
             
-            echo '<tr><td id="'.$data['id'].'"><div style="height: 300px; width: 300px; overflow: scroll;">'.$data['data'].'</div></td></tr>';
+            echo '<tr><td id="'.$data['id'].'"><div style="height: 300px; width: 300px; overflow: auto;">'.$data['data'].'</div></td></tr>';
             
             echo '<tr><td>';
             echo '<input type="button" class="btn btn-primary" value="Edit Content" onClick="Data.edit('.$data['id'].')" /> <br />';
