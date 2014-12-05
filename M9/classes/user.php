@@ -74,9 +74,9 @@ class user
             echo '<input type="button" class="btn btn-default" value="'.$data['type'].'" onClick="User.type('.$data['id'].')" />';
             echo '</td></tr>';
             
-            echo '<tr><td>';
+            echo '<tr><td><div style="height: 225px; width: 100%; overflow: auto;">';
             echo groups::getUser($data['id']);
-            echo '</td></tr>';
+            echo '</div></td></tr>';
             
             echo '<tr><td>';
             echo '<input type="button" class="btn btn-warning" value="Logout User" onClick="User.logout('.$data['id'].')" />';
