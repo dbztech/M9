@@ -125,11 +125,10 @@ input {
 .homeviews h2 {
     background: yellow;
     display: inline-block;
-    height: 200px;
     width: 50%;
     margin: 0px -2px;
     color: black;
-    padding-top: 55px;
+    padding: 45px;
     font-family: Phosphate;
     vertical-align: middle;
 }
@@ -166,7 +165,7 @@ input {
 }
 
 .notice {
-    background: white;
+    background: rgba(255,255,255,.8);
     color: black;
     padding: 25px 0px;
     margin: 0px;
