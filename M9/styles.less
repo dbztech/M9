@@ -120,18 +120,21 @@ input {
 
 .homeviews {
     width: 100%;
+    h2 {
+        background: yellow;
+        margin: 0px -2px;
+        color: black;
+        padding: 45px;
+        font-family: Phosphate;
+        vertical-align: middle;
+        @media (min-width: 768px) {
+            display: inline-block;
+            width: 50%;
+        }
+    }
 }
 
-.homeviews h2 {
-    background: yellow;
-    display: inline-block;
-    width: 50%;
-    margin: 0px -2px;
-    color: black;
-    padding: 45px;
-    font-family: Phosphate;
-    vertical-align: middle;
-}
+.homeviews 
 
 .homeviews h2:hover {
     opacity: .9;

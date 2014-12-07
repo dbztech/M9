@@ -74,6 +74,8 @@ class M9
             echo '<script src="/M9/jquery/jquery.fittext.js"></script>'."\n";
         } else if ($frameworkname == "TinyMCE") {
             echo '<script src="/M9/tinymce/tinymce.min.js"></script>'."\n";
+        } else if ($frameworkname == "Less") {
+            echo '<script src="less.min.js"></script>'."\n";
         }
     }
 }

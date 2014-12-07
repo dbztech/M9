@@ -4,13 +4,14 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <?php m9::addframework('jQuery'); ?>
-        <?php m9::addframework('Bootstrap'); ?>
-        <?php m9::addframework('TinyMCE'); ?>
-        <link rel="stylesheet" href="styles.css" />
-        <script type="text/javascript" src="scripts.js"></script>
         <link rel="shortcut icon" href="/M9/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/M9/favicon.ico" type="image/x-icon">
+        <?php m9::addframework('jQuery'); ?>
+        <?php m9::addframework('Bootstrap'); ?>
+        <link rel="stylesheet/less" type="text/css" href="styles.less" />
+        <?php m9::addframework('TinyMCE'); ?>
+        <?php m9::addframework('Less'); ?>
+        <script type="text/javascript" src="scripts.js"></script>
         <title>M9 Admin Panel</title>
     </head>
     <body onload="Core.load();">
@@ -28,9 +29,6 @@
             <?php
                 cards::adminPanel();
             ?>
-            <script>
-              jQuery(".filltext").fitText();
-            </script>
         </div>
         <script src="validate.js"></script>
     </body>
