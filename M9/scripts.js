@@ -32,6 +32,7 @@ function core() {
     
     this.load = function() {
         //Called on load
+        jQuery(".filltext").fitText();
     }
 }
 
