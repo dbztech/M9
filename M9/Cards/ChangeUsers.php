@@ -1,4 +1,4 @@
-<h2>Manage Users</h2>
+<h1 class="lead">Manage Users</h1>
 <?php user::userList(); ?>
 <!-- Modal -->
 <div class="modal fade" id="removeGroupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="color: black;">
@@ -17,7 +17,7 @@
             <input type="hidden" name="UserId" id="removeGroupUser" value="" />
             <input type="hidden" name="group" id="removeGroupGroup" value="" />
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <input type="submit" class="btn btn-danger" value="Remove Group" />
+            <input type="submit" class="btn btn-danger" value="Remove Group" style="margin: 0px; color: black;" />
         </form>
       </div>
     </div><!-- /.modal-content -->

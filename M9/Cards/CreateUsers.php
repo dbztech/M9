@@ -1,5 +1,5 @@
-<h2>Create Users</h2>
-<form action="Process.php" method="post">
+<h1 class="lead">Create User</h1>
+<form action="Process.php" method="post" class="validate-form">
     <div class="form-group">
         <input type="hidden" name="query" value="CreateUser" />
         <input type="email" placeholder="Email" name="username" class="form-control" required />

@@ -32,6 +32,7 @@ function core() {
     
     this.load = function() {
         //Called on load
+        jQuery(".filltext").fitText();
     }
 }
 
@@ -45,31 +46,12 @@ function interface() {
     
     
     this.addPanel = function(panelId) {
-        this.panelCount++;
-        
-        var bodyWidth = 100-((this.panelCount*5)+10);
-        
-        //console.log(bodyWidth);
-        document.getElementById("content").style.width = bodyWidth.toString()+"%";
-        
         Core.showId(panelId);
     }
     
     this.removePanel = function(panelId) {
-        this.panelCount--;
-        
-        var bodyWidth = 100-((this.panelCount*5)+10);
-        
-        //console.log(bodyWidth);
-        document.getElementById("content").style.width = bodyWidth.toString()+"%";
         
         Core.hideId(panelId);
-    }
-    
-    this.popPanel = function(panelToPop, viewToShow) {
-        Interface.removePanel(panelToPop);
-        
-        Interface.showView(viewToShow);
     }
     
     this.modalPanel = function(panelToModal, viewToShow, currentView) {
@@ -82,9 +64,11 @@ function interface() {
     }
     
     this.popPanel = function() {
+        
         Interface.removePanel(Interface.currentPanel);
         
         Interface.showView(Interface.lastView);
+        jQuery(".filltext").fitText();
     }
     
     this.showView = function(viewToShow) {
