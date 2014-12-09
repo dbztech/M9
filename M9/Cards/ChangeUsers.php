@@ -17,7 +17,7 @@
             <input type="hidden" name="UserId" id="removeGroupUser" value="" />
             <input type="hidden" name="group" id="removeGroupGroup" value="" />
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <input type="submit" class="btn btn-danger" value="Remove Group" />
+            <input type="submit" class="btn btn-danger" value="Remove Group" style="margin: 0px; color: black;" />
         </form>
       </div>
     </div><!-- /.modal-content -->
