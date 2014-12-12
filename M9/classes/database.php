@@ -49,8 +49,8 @@ class database
                 print ("Could not connect to server. \n");
                 die ("getMessage(): " . $e->getMessage () . "\n");
             } else {
-                include('DatabaseError.php');
-                die();
+                #include('../DatabaseError.php');
+                #die();
             }
 		}
         #$dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
