@@ -1,29 +1,53 @@
 <?php
 #This file handled login information and load admin panel
 include('M9.php');
+
+// The response from reCAPTCHA
+$resp = null;
+// The error code from reCAPTCHA, if any
+$error = null;
+
+$reCaptcha = new ReCaptcha($secret);
+
 M9::start(false);
 
 $login = false;
 $postrec = false;
 
 if (count($_POST) > 0) {
-    $username = filter::username($_POST['username']);
-    $password = filter::password($_POST['password']);
-    $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($username));
-    $userdata = $userdata[0];
+    
     $postrec = true;
-    #If login data is recieved
-    if ($username == $userdata['username'] && hash('sha256', $password) == $userdata['password'] && $userdata != '') {
-        setcookie("username", $username, time()+10000, "/");
-        $random = hash('sha256', rand());
-        database::preparedInsert("UPDATE  `users` SET  `clientid` =  ? WHERE  `users`.`id` = ?", array($random, $userdata['id']));
-        setcookie("clientid", $random, time()+10000, "/");
-        header('Location: /M9/');
-        $login = true;
+    
+    if ($_POST["g-recaptcha-response"]) {
+        $resp = $reCaptcha->verifyResponse(
+            $_SERVER["REMOTE_ADDR"],
+            $_POST["g-recaptcha-response"]
+        );
+    }
+    
+    if ($resp != null && $resp->success || !$recaptchaenabled) {
+        $username = filter::username($_POST['username']);
+        $password = filter::password($_POST['password']);
+        $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($username));
+        $userdata = $userdata[0];
+
+        #If login data is recieved
+        if ($username == $userdata['username'] && hash('sha256', $password) == $userdata['password'] && $userdata != '') {
+            setcookie("username", $username, time()+10000, "/");
+            $random = hash('sha256', rand());
+            database::preparedInsert("UPDATE  `users` SET  `clientid` =  ? WHERE  `users`.`id` = ?", array($random, $userdata['id']));
+            setcookie("clientid", $random, time()+10000, "/");
+            header('Location: /M9/');
+            $login = true;
+        } else {
+            include('Forbidden.php');
+            $login = false;
+            die();
+        }
     } else {
-        //echo "Password invalid";
-        include('Forbidden.php');
+        include('ForbiddenCap.php');
         $login = false;
+        die();
     }
 }
 
