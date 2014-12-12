@@ -8,5 +8,6 @@ include('classes/filter.php');
 include('classes/groups.php');
 include('classes/M9.php');
 include('classes/user.php');
+include('classes/recaptchalib.php');
 
 ?>

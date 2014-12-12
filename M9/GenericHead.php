@@ -4,7 +4,7 @@
     <link rel="stylesheet/less" type="text/css" href="/M9/styles.less" />
     <link rel="shortcut icon" href="/M9/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/M9/favicon.ico" type="image/x-icon">
-    <script src="less.min.js"></script>
+    <script src="/M9/less.min.js"></script>
     <script src="/M9/jquery/jquery.min.js"></script>
     <script src="/M9/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/M9/scripts.js"></script>

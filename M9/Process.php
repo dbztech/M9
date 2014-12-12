@@ -61,6 +61,9 @@ if (count($_GET) > 0) {
             if ($data[0] == "DeleteData") {
                 data::delete($data[1]);
             }
+        } else {
+            include('Forbidden.php');
+            die();
         }
     }
 }
