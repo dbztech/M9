@@ -2,12 +2,14 @@
 #This file handled login information and load admin panel
 include('M9.php');
 
-// The response from reCAPTCHA
-$resp = null;
-// The error code from reCAPTCHA, if any
-$error = null;
+if ($recaptchaenabled) {
+    // The response from reCAPTCHA
+    $resp = null;
+    // The error code from reCAPTCHA, if any
+    $error = null;
 
-$reCaptcha = new ReCaptcha($secret);
+    $reCaptcha = new ReCaptcha($secret);
+}
 
 M9::start(false);
 
