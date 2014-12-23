@@ -10,7 +10,7 @@
             <ol style="text-align: left; width: 70%; margin: auto;">
                 <li>Create a database for M9 to use</li>
                 <li>Create a user with <b>NO</b> global permissions</li>
-                <li>Grand this user database specific permission to the M9 database</li>
+                <li>Grant this user database specific permission to the M9 database</li>
                 <li>Enter the username and database info below</li>
             </ol>
             <form method="post" action="Process.php" target="_blank">
