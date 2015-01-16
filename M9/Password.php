@@ -3,7 +3,7 @@
 <?php include('M9.php'); M9::authorization(array("hash")); ?>
 <!doctype html>
 <html>
-    <?php $title = "M9 Hash Generation Tool"; include('GenericHead.php'); ?>
+    <?php $title = "M9 Hash Generation Tool"; #include('GenericHead.php'); ?>
     <body>
         <div class="jumbotron">
         <h1 class="">M9 Password Creation Tool</h1>
@@ -16,7 +16,7 @@
             </form>
             <?php
                 if(count($_POST) > 0) {
-                    echo "Result: ".hash('sha256', $_POST['password']);
+                    echo "Result: ".hash('sha512', $_POST['password']);
                 }
             ?>
         </div>

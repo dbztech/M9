@@ -34,7 +34,7 @@ if (count($_POST) > 0) {
         $userdata = $userdata[0];
 
         #If login data is recieved
-        if ($username == $userdata['username'] && hash('sha256', $password) == $userdata['password'] && $userdata != '') {
+        if ($username == $userdata['username'] && hash('sha512', $password) == $userdata['password'] && $userdata != '') {
             setcookie("username", $username, time()+10000, "/");
             $random = hash('sha256', rand());
             database::preparedInsert("UPDATE  `users` SET  `clientid` =  ? WHERE  `users`.`id` = ?", array($random, $userdata['id']));
