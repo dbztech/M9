@@ -3,20 +3,21 @@
 <?php include('M9.php'); M9::authorization(array("hash")); ?>
 <!doctype html>
 <html>
-    <?php $title = "M9 Hash Generation Tool"; #include('GenericHead.php'); ?>
+    <?php $title = "M9 Hash Generation Tool"; include('GenericHead.php'); ?>
     <body>
         <div class="jumbotron">
         <h1 class="">M9 Password Creation Tool</h1>
             <form method="post" action="Password.php">
                 <div class="form-group">
                     <input type="hidden" name="query" value="PasswordHash" />
-                    <input type="password" name="password" class="form-control" required />
+                    <input type="text" name="username" class="form-control" placeholder="Username" required />
+                    <input type="password" name="password" class="form-control" placeholder="Password" required />
                     <input type="submit" class="form-control" />
                 </div>
             </form>
             <?php
                 if(count($_POST) > 0) {
-                    echo "Result: ".hash('sha512', $_POST['password']);
+                    echo "Result: ".hash('sha512', $_POST['username']).hash('sha512', $_POST['password']);
                 }
             ?>
         </div>

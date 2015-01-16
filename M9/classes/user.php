@@ -24,7 +24,7 @@ class user
             #echo "User exists";
         } else {
             #echo "Inserted";
-            database::preparedInsert("INSERT INTO `users` (`username`, `password`, `clientid`, `type`, `groups`, `gravatar`, `id`) VALUES (?, ?, NULL, ?, NULL, ?, NULL);", array($username, hash('sha512', $password), $type, md5(strtolower(trim($username)))));
+            database::preparedInsert("INSERT INTO `users` (`username`, `password`, `clientid`, `type`, `groups`, `gravatar`, `id`) VALUES (?, ?, NULL, ?, NULL, ?, NULL);", array($username, hash('sha512', $username).hash('sha512', $password), $type, md5(strtolower(trim($username)))));
         }
     }
     
@@ -42,7 +42,7 @@ class user
         $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `id` = ?', array($user));
         $userdata = $userdata[0];
         if ($new == $repeat) {
-            database::preparedInsert("UPDATE  `users` SET  `password` = ? WHERE  `users`.`id` = ?", array(hash('sha512', $new), $user));
+            database::preparedInsert("UPDATE  `users` SET  `password` = ? WHERE  `users`.`id` = ?", array(hash('sha512', $userdata['username']).hash('sha512', $new), $user));
             database::preparedInsert("UPDATE  `users` SET  `clientid` =  NULL WHERE  `users`.`id` = ?", array($user));
         }
     }
