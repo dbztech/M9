@@ -1,6 +1,6 @@
 <?php
 #M9 Classes
-
+include('classes/cards.php');
 include('classes/data.php');
 include('classes/database.php');
 include('classes/devmode.php');
