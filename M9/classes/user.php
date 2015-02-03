@@ -91,9 +91,19 @@ class user
     }
     
     public static function validateUser() {
+        include($_SERVER['DOCUMENT_ROOT'].'/M9/configcaptcha.php');
+        if ($recaptchaenabled) {
+            // The response from reCAPTCHA
+            $resp = null;
+            // The error code from reCAPTCHA, if any
+            $error = null;
+
+            $reCaptcha = new ReCaptcha($secret);
+        }
+        
         $login = false;
         $postrec = false;
-        if (count($_POST) > 0 && filter::username($_POST['username']) != "") {
+        if (count($_POST) > 0 && $_POST['query'] == "") {
             $postrec = true;
             if ($_POST["g-recaptcha-response"]) {
                 $resp = $reCaptcha->verifyResponse(
