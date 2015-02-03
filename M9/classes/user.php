@@ -52,9 +52,7 @@ class user
     }
     
     public static function getUserType() {
-        $user = $_COOKIE['username'];
-        $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($user));
-        $userdata = $userdata[0];
+        $userdata = user::getUserData();
         return $userdata['type'];
     }
     
@@ -88,10 +86,66 @@ class user
     }
     
     public static function getGravatar() {
-        $user = $_COOKIE['username'];
-        $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($user));
-        $userdata = $userdata[0];
+        $userdata = user::getUserData();
         return $userdata['gravatar'];
+    }
+    
+    public static function validateUser() {
+        $login = false;
+        $postrec = false;
+        if (count($_POST) > 0 && filter::username($_POST['username']) != "") {
+            $postrec = true;
+            if ($_POST["g-recaptcha-response"]) {
+                $resp = $reCaptcha->verifyResponse(
+                    $_SERVER["REMOTE_ADDR"],
+                    $_POST["g-recaptcha-response"]
+                );
+            }
+
+            if ($resp != null && $resp->success || !$recaptchaenabled) {
+                $username = filter::username($_POST['username']);
+                $password = filter::password($_POST['password']);
+                $userdata = user::getUserData();
+
+                #If login data is recieved
+                if ($username == $userdata['username'] && hash('sha512', $username).hash('sha512', $password) == $userdata['password'] && $userdata != '') {
+                    setcookie("username", $username, time()+10000, "/");
+                    $random = hash('sha256', rand());
+                    database::preparedInsert("UPDATE  `users` SET  `clientid` =  ? WHERE  `users`.`id` = ?", array($random, $userdata['id']));
+                    setcookie("clientid", $random, time()+10000, "/");
+                    header('Location: /M9/');
+                    $login = true;
+                } else {
+                    include('Forbidden.php');
+                    $login = false;
+                    die();
+                }
+            } else {
+                include('ForbiddenCap.php');
+                $login = false;
+                die();
+            }
+        }
+
+        if (count($_COOKIE) > 0) {
+            $username = filter::username($_COOKIE['username']);
+            $userdata = user::getUserData();
+            #If the user has cookies, this is very likely
+            if ($userdata != '' && $username == filter::username($userdata['username']) && filter::password($_COOKIE['clientid']) == $userdata['clientid']) {
+                $login = true;
+            } else {
+                $login = false;
+            }
+        }
+        
+        return $login;
+    }
+    
+    public static function getUserData() {
+        $username = filter::username($_COOKIE['username']);
+        $userdata = database::preparedSelect("SELECT * FROM  `users` WHERE  `username` =  ?", array($username));
+        $userdata = $userdata[0];
+        return $userdata;
     }
 }
 ?>
