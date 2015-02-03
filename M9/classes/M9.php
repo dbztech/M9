@@ -34,10 +34,10 @@ class M9
     }
     
     public static function authorization($groups) {
+        $authorized = false;
         if (count($_COOKIE) > 0) {
             $userdata = user::getUserData();
             #If the user has cookies, this is very likely
-            $authorized = false;
             $login = user::validateUser();
             if ($login) {
                 $usergroups = groups::get($userdata['id']);
@@ -49,16 +49,15 @@ class M9
                     }
                 }
             }
-            
-            if (!$authorized) {
-                header('HTTP/1.0 401 Unauthorized');
-                if ($login) {
-                    echo 'You are not authorized to access this page! Login with a different M9 account and try again. <a href="/M9">Return to M9</a>';
-                } else {
-                    header('Location: /M9/');
-                }
-                die();
+        }
+        if (!$authorized) {
+            header('HTTP/1.0 401 Unauthorized');
+            if ($login) {
+                echo 'You are not authorized to access this page! Login with a different M9 account and try again. <a href="/M9">Return to M9</a>';
+            } else {
+                header('Location: /M9/');
             }
+            die();
         }
     }
     

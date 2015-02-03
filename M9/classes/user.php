@@ -115,8 +115,8 @@ class user
             if ($resp != null && $resp->success || !$recaptchaenabled) {
                 $username = filter::username($_POST['username']);
                 $password = filter::password($_POST['password']);
-                $userdata = user::getUserData();
-
+                $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($username));
+                $userdata = $userdata[0];
                 #If login data is recieved
                 if ($username == $userdata['username'] && hash('sha512', $username).hash('sha512', $password) == $userdata['password'] && $userdata != '') {
                     setcookie("username", $username, time()+10000, "/");
