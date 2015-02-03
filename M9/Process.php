@@ -1,16 +1,15 @@
 <?php
 include('M9.php');
 
+$username = filter::username($_COOKIE['username']);
+$clientid = filter::password($_COOKIE['clientid']);
+$userdata = user::getUserData();
+
 if (count($_POST) > 0) {
     if (count($_COOKIE) > 0) {
-        $username = filter::username($_COOKIE['username']);
-        $clientid = filter::password($_COOKIE['clientid']);
-        $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($username));
-        $userdata = $userdata[0];
+        $login = user::validateUser();
         #If the user has cookies, this is very likely
-        if ($username == $userdata['username'] && $clientid == $userdata['clientid'] && $userdata != '') {
-            #echo $_POST['query'];
-            
+        if ($login) {
             if ($userdata['type'] == "admin") {
                 if ($_POST['query'] == "CreateUser") {
                     user::create($_POST['username'], $_POST['password'], $_POST['type']);
@@ -41,12 +40,10 @@ if (count($_POST) > 0) {
 
 if (count($_GET) > 0) {
     if (count($_COOKIE) > 0) {
-        $username = filter::username($_COOKIE['username']);
-        $clientid = filter::password($_COOKIE['clientid']);
-        $userdata = database::preparedSelect('SELECT *  FROM `users` WHERE `username` = ?', array($username));
-        $userdata = $userdata[0];
         #If the user has cookies, this is very likely
-        if ($username == $userdata['username'] && $clientid == $userdata['clientid'] && $userdata != '') {
+        $login = user::validateUser();
+        
+        if ($login) {
             #echo "GET Data";
             $data = explode('_', $_GET['query']);
             
