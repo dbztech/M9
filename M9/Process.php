@@ -65,5 +65,5 @@ if (count($_GET) > 0) {
     }
 }
 
-header('Location: /M9/');
+header('Location: http://'.$_SERVER['SERVER_NAME']."/M9/");
 ?>
