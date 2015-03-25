@@ -55,7 +55,7 @@ class M9
             if ($login) {
                 echo 'You are not authorized to access this page! Login with a different M9 account and try again. <a href="/M9">Return to M9</a>';
             } else {
-                header('Location: /M9/');
+                header('Location: '.$_SERVER['SERVER_NAME'].'/M9/');
             }
             die();
         }
