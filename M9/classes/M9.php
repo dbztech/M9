@@ -57,8 +57,11 @@ class M9
             } else {
                 header('Location: http://'.$_SERVER['SERVER_NAME']."/M9/");
             }
+            echo "Life is ball";
             die();
         }
+        
+        echo "Ball is life";
     }
     
     public static function addframework($frameworkname) {
