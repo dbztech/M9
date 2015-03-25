@@ -8,7 +8,7 @@ class devmode
             $userdata = $userdata[0];
             #If the user has cookies, this is very likely
             if ($username == $userdata['username'] && filter::password($_COOKIE['clientid']) == $userdata['clientid'] && $userdata != '') {
-                header('Location: http://'.$_SERVER['SERVER_NAME']."/".$newPage);
+                header('Location: '.$newPage);
             }
         }
     }

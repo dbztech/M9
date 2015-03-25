@@ -6,7 +6,7 @@ class user
         database::preparedInsert("UPDATE  `users` SET  `clientid` =  NULL WHERE  `users`.`username` = ?", array($user));
         setcookie('username', '');
         setcookie('clientid', '');
-        header('Location: http://'.$_SERVER['SERVER_NAME']."/M9/");
+        header('Location: /M9/');
     }
     
     public static function logoutSpecific($user) {
@@ -123,7 +123,7 @@ class user
                     $random = hash('sha256', rand());
                     database::preparedInsert("UPDATE  `users` SET  `clientid` =  ? WHERE  `users`.`id` = ?", array($random, $userdata['id']));
                     setcookie("clientid", $random, time()+10000, "/");
-                    header('Location: http://'.$_SERVER['SERVER_NAME']."/M9/");
+                    header('Location: /M9/');
                     $login = true;
                 } else {
                     include('Forbidden.php');
