@@ -1,4 +1,4 @@
-<?php include('M9/M9.php'); M9::authorization(array("conten","website")); ?>
+<?php echo "I'm PHP"; include('M9/M9.php'); M9::authorization(array("conten","website")); ?>
 <!doctype html>
 <html>
     <head></head>
