@@ -1,7 +1,4 @@
-M9
+HERO Capture Suite
 ==
 
-Second version of the M series content managment systems from DBZ Technology
-
-Installation: 
-Place the M9 directory into your site's web root and browse the M9 directory to begin the setup agent
+A system used for capturing analog input from the Arduino platform into MatLab data
