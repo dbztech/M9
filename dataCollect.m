@@ -6,7 +6,7 @@ file=input('File name (include.csv)- ','s');
 controller=arduino('COM3','uno');
 
 xMin=0;
-xMax=100;
+xMax=200;
 yMin=0;
 yMax=3;
 
@@ -16,8 +16,12 @@ leftPin=2
 rightPin=0
 
 %%
-data=[0 0 0];
-t=1;
+data=zeros(10^8,3);
+t=0;
+row = 1;
+
+frameMin = 1;
+frameMax = xMax;
 %%
 figure(1);
     
@@ -43,28 +47,26 @@ datPlot=plot(data(1,1))
 window=gca;
 %%
 while buttonVal=='Record Data   '
-    if length(data)>xMax
-    plot(data(end-xMax:end,2));
-    else
-        plot(data(:,2))
+    if data(frameMax,1) > 0
+        frameMax=frameMax+1;
+        frameMin=frameMin+1;
     end
+    
+    plot(data(frameMin:frameMax,2))
     hold on
-    if length(data)>xMax
-    plot(data(end-xMax:end,3));
-    else
-        plot(data(:,3))
-    end
+    plot(data(frameMin:frameMax,3))
+    hold off
     
     set(window,'YTick',[0,.5,1,1.5,2,2.5],'YAxisLocation','right');
     axis([xMin xMax yMin yMax]);
     drawnow
-    hold off
     leftAnalog=readVoltage(controller,leftPin);
     rightAnalog=readVoltage(controller,rightPin);
-    r4 = uicontrol(bg,'Style','text','String',sprintf('%d Volts \n(Analog 0)\n %d volts\n (Analog 1)\n %d',leftAnalog,rightAnalog,data(t,3)/10),'Position',[10 145 100 30]);
-    data=[data;t,leftAnalog,rightAnalog];
+    %r4 = uicontrol(bg,'Style','text','String',sprintf('%d Volts \n(Analog 0)\n %d volts\n (Analog 1)\n %d',leftAnalog,rightAnalog,data(t,3)/10),'Position',[10 145 100 30]);
+    data(row,:) = [t leftAnalog rightAnalog];
+    row=row+1;
     pause(timescale/1000);
     t=t+timescale;
 end
-csvwrite(sprintf(file),data)
+csvwrite(sprintf(file),data(1:row,:));
 end
