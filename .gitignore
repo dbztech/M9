@@ -167,6 +167,3 @@ phpmyadmin/
 
 M9/config.php
 M9/configcaptcha.php
-*.csv
-*.xlsx
-*.asv
